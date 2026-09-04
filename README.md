@@ -31,6 +31,28 @@ python run.py
 python run.py http
 ```
 
+## MCP 服务配置
+
+本服务使用 Python + FastMCP 实现，默认使用 STDIO 传输。
+
+### MCP Client 配置
+
+```json
+{
+  "mcpServers": {
+    "biz-mcp-gateway": {
+      "command": "python",
+      "args": ["run.py"],
+      "env": {
+        "API_BASE": "https://ai.inspirvision.cn/s",
+        "TOKEN": "",
+        "TIMEOUT": "30"
+      }
+    }
+  }
+}
+
+
 ## 通过 pip 安装运行
 
 ```bash
