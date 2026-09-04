@@ -1,6 +1,0 @@
-2026-09-02 18:57:06,889 [INFO] HTTP Request: POST http://192.168.199.121:16880/api/ocr/identityCard "HTTP/1.1 400 "
-2026-09-02 18:57:06,890 [ERROR] HTTP错误: /api/ocr/identityCard status=400
-[32mINFO[0m:     127.0.0.1:58557 - "[1mPOST /mcp HTTP/1.1[0m" [32m200 OK[0m
-2026-09-02 18:58:25,128 [INFO] HTTP Request: POST http://192.168.199.121:16880/api/ocr/identityCard "HTTP/1.1 400 "
-2026-09-02 18:58:25,130 [ERROR] HTTP错误: /api/ocr/identityCard status=400
-
