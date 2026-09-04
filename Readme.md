@@ -44,6 +44,10 @@ OCR/文档识别 MCP 服务，提供多种图像识别、票据识别、证件�
 
 ```json
 {
-  "command": "python",
-  "args": ["run.py"]
+  "mcpServers": {
+    "biz-mcp-gateway": {
+      "command": "python",
+      "args": ["run.py"]
+    }
+  }
 }
