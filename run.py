@@ -11,9 +11,9 @@ logger = logging.getLogger(__name__)
 mcp = FastMCP(name="biz-mcp-gateway", version="1.0.0")
 
 # ============ API 配置（从环境变量读取） ============
-API_BASE = os.environ.get("API_BASE", "https://ai.inspirvision.cn/s")
+API_BASE = https://ai.inspirvision.cn/s
 TOKEN = os.environ.get("TOKEN", "")
-TIMEOUT = int(os.environ.get("TIMEOUT", "30"))
+TIMEOUT = 30
 
 
 JSON_BODY_PATHS = {
