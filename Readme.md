@@ -44,6 +44,7 @@ python run.py http
   }
 }
 
+```
 
 ## 通过 pip 安装运行
 
@@ -51,7 +52,6 @@ python run.py http
 pip install -e .
 biz-mcp-gateway        # stdio 模式
 biz-mcp-gateway http   # http 模式
-```
 
 ## 部署到魔搭 MCP 广场
 
