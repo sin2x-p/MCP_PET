@@ -2,7 +2,9 @@
 name = "biz-mcp-gateway"
 version = "1.0.0"
 description = "OCR/文档识别 MCP 服务，支持医疗票据、证件、车辆、宠物等识别能力"
+readme = "README.md"
 requires-python = ">=3.10"
+
 dependencies = [
     "fastmcp",
     "httpx",
@@ -14,3 +16,6 @@ biz-mcp-gateway = "run:main"
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+only-include = ["run.py"]
