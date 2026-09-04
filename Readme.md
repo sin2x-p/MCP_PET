@@ -45,10 +45,5 @@ OCR/文档识别 MCP 服务，提供多种图像识别、票据识别、证件�
 ```json
 {
   "command": "python",
-  "args": ["run.py"],
-  "env": {
-    "API_BASE": "https://ai.inspirvision.cn/s",
-    "TOKEN": "",
-    "TIMEOUT": "30"
-  }
+  "args": ["run.py"]
 }
