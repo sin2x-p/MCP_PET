@@ -5,7 +5,7 @@
     "description": "税务发票识别"
   },
   "server": {
-    "api_base": "${API_BASE}",
+    "api_base": "https://ai.inspirvision.cn/s",
     "timeout": 30
   },
   "tools": [

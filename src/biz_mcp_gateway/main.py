@@ -13,11 +13,11 @@ logger = logging.getLogger(__name__)
 
 
 def parse_args():
-    """解析命令行参数"""
+    """解析命令行参数，支持环境变量"""
     args = {
-        "config_name": "all",
-        "mode": "stdio",
-        "token_source": "header",  # env / header / both
+        "config_name": os.environ.get("MCP_CONFIG", "all"),
+        "mode": os.environ.get("MCP_MODE", "stdio"),
+        "token_source": os.environ.get("TOKEN_SOURCE", "header"),
     }
     
     for arg in sys.argv[1:]:

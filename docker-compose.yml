@@ -5,78 +5,86 @@ services:
   mcp-pet:
     build: .
     environment:
-      - API_BASE=https://ai.inspirvision.cn/s
       - LOG_LEVEL=INFO
+      - MCP_CONFIG=pet
+      - MCP_MODE=http
+      - TOKEN_SOURCE=header
     ports:
       - "8001:8000"
-    command: ["pet", "http", "--token-source=header"]
 
   # 鸟类识别
   mcp-bird:
     build: .
     environment:
-      - API_BASE=https://ai.inspirvision.cn/s
       - LOG_LEVEL=INFO
+      - MCP_CONFIG=bird
+      - MCP_MODE=http
+      - TOKEN_SOURCE=header
     ports:
       - "8002:8000"
-    command: ["bird", "http", "--token-source=header"]
 
   # 通用能力
   mcp-general:
     build: .
     environment:
-      - API_BASE=https://ai.inspirvision.cn/s
       - LOG_LEVEL=INFO
+      - MCP_CONFIG=general
+      - MCP_MODE=http
+      - TOKEN_SOURCE=header
     ports:
       - "8003:8000"
-    command: ["general", "http", "--token-source=header"]
 
   # 证件识别
   mcp-certificate:
     build: .
     environment:
-      - API_BASE=https://ai.inspirvision.cn/s
       - LOG_LEVEL=INFO
+      - MCP_CONFIG=certificate
+      - MCP_MODE=http
+      - TOKEN_SOURCE=header
     ports:
       - "8004:8000"
-    command: ["certificate", "http", "--token-source=header"]
 
   # 医疗票据
   mcp-invoice-medical:
     build: .
     environment:
-      - API_BASE=https://ai.inspirvision.cn/s
       - LOG_LEVEL=INFO
+      - MCP_CONFIG=invoice_medical
+      - MCP_MODE=http
+      - TOKEN_SOURCE=header
     ports:
       - "8005:8000"
-    command: ["invoice_medical", "http", "--token-source=header"]
 
   # 财务发票
   mcp-invoice-financial:
     build: .
     environment:
-      - API_BASE=https://ai.inspirvision.cn/s
       - LOG_LEVEL=INFO
+      - MCP_CONFIG=invoice_financial
+      - MCP_MODE=http
+      - TOKEN_SOURCE=header
     ports:
       - "8006:8000"
-    command: ["invoice_financial", "http", "--token-source=header"]
 
   # 税务发票
   mcp-invoice-tax:
     build: .
     environment:
-      - API_BASE=https://ai.inspirvision.cn/s
       - LOG_LEVEL=INFO
+      - MCP_CONFIG=invoice_tax
+      - MCP_MODE=http
+      - TOKEN_SOURCE=header
     ports:
       - "8007:8000"
-    command: ["invoice_tax", "http", "--token-source=header"]
 
   # 车辆识别
   mcp-vehicle:
     build: .
     environment:
-      - API_BASE=https://ai.inspirvision.cn/s
       - LOG_LEVEL=INFO
+      - MCP_CONFIG=vehicle
+      - MCP_MODE=http
+      - TOKEN_SOURCE=header
     ports:
       - "8008:8000"
-    command: ["vehicle", "http", "--token-source=header"]

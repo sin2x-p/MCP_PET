@@ -10,12 +10,13 @@ COPY pyproject.toml .
 # 安装依赖
 RUN pip install --no-cache-dir .
 
-# 环境变量
-ENV API_BASE=https://ai.inspirvision.cn/s
+# 默认环境变量
 ENV LOG_LEVEL=INFO
+ENV MCP_CONFIG=all
+ENV MCP_MODE=http
+ENV TOKEN_SOURCE=header
 
 EXPOSE 8000
 
-# 启动，通过参数指定配置
+# 启动
 ENTRYPOINT ["python", "-m", "biz_mcp_gateway.main"]
-CMD ["all"]
