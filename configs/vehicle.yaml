@@ -1,0 +1,168 @@
+metadata:
+  name: vehicle
+  version: 1.0.0
+  description: 车辆识别
+server:
+  api_base: ${API_BASE}
+  timeout: 30
+tools:
+- name: query_plate_no
+  description: VIN码查询车牌
+  category: 车辆识别
+  http:
+    method: POST
+    path: /api/ocr/queryPlateNo
+    content_type: form-data
+  parameters:
+  - python_name: vin
+    http_field: vin
+    type: string
+    required: true
+    default: ''
+    description: 车辆VIN码/车架号
+    location: body
+- name: get_vehicle_models
+  description: 车型库查询
+  category: 车辆识别
+  http:
+    method: POST
+    path: /api/ocr/getVehicleModels
+    content_type: form-data
+  parameters:
+  - python_name: vehicle_type
+    http_field: vehicleType
+    type: integer
+    required: true
+    default: 0
+    description: 查询类型：1获取所有品牌 2根据品牌获取车系 3根据车系获取车型 4获取车型详细信息 5车型搜索
+    location: body
+  - python_name: vehicle_id
+    http_field: vehicleId
+    type: string
+    required: false
+    default: ''
+    description: 查找id：vehicleType为2时传品牌id，3时传车系id，4时传车型id
+    location: body
+  - python_name: vehicle_key_word
+    http_field: vehicleKeyWord
+    type: string
+    required: false
+    default: ''
+    description: 查找关键字：vehicleType为5（车型搜索）时必选
+    location: body
+- name: query_vehicle
+  description: 车辆信息查询（车五项）
+  category: 车辆识别
+  http:
+    method: POST
+    path: /api/ocr/queryVehicle
+    content_type: form-data
+  parameters:
+  - python_name: vin
+    http_field: vin
+    type: string
+    required: false
+    default: ''
+    description: 车架号，与licenseNo二选一
+    location: body
+  - python_name: license_no
+    http_field: licenseNo
+    type: string
+    required: false
+    default: ''
+    description: 车牌号
+    location: body
+  - python_name: plate_type
+    http_field: plateType
+    type: string
+    required: false
+    default: ''
+    description: 号牌种类：101小型汽车 102大型汽车 103小型新能源 104大型新能源
+    location: body
+- name: query_vehicle_detailed
+  description: 车辆信息查询（详版）
+  category: 车辆识别
+  http:
+    method: POST
+    path: /api/ocr/queryVehicleDetailed
+    content_type: form-data
+  parameters:
+  - python_name: vin
+    http_field: vin
+    type: string
+    required: true
+    default: ''
+    description: 车架号
+    location: body
+- name: get_car_factory_info
+  description: 车辆出厂信息查询
+  category: 车辆识别
+  http:
+    method: POST
+    path: /api/ocr/getCarFactoryInfo
+    content_type: form-data
+  parameters:
+  - python_name: vin
+    http_field: vin
+    type: string
+    required: true
+    default: ''
+    description: 车辆VIN码/车架号
+    location: body
+- name: vehicle_vin
+  description: 车辆VIN码识别
+  category: 车辆识别
+  http:
+    method: POST
+    path: /api/ocr/vin
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imgBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码
+    location: body
+  - python_name: img_url
+    http_field: imgUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址
+- name: vin_parsing
+  description: 车辆VIN码解析
+  category: 车辆识别
+  http:
+    method: POST
+    path: /api/ocr/vinParsing
+    content_type: form-data
+  parameters:
+  - python_name: vin
+    http_field: vin
+    type: string
+    required: true
+    default: ''
+    description: 车辆VIN码/车架号
+    location: body
+- name: vehicle_registration
+  description: 机动车登记证书识别
+  category: 车辆识别
+  http:
+    method: POST
+    path: /api/ocr/vehicleRegistration
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imgBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码
+    location: body
+  - python_name: img_url
+    http_field: imgUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址

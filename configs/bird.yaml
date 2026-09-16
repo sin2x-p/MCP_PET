@@ -1,0 +1,177 @@
+metadata:
+  name: bird
+  version: 1.0.0
+  description: 鸟类识别
+server:
+  api_base: ${API_BASE}
+  timeout: 30
+tools:
+- name: get_animal_type
+  description: 动物识别
+  category: 宠物识别
+  http:
+    method: POST
+    path: /api/getAnimalType
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imgBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码(包含data:image/png;base64,)
+    location: body
+  - python_name: img_url
+    http_field: imgUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址
+- name: bird_detect
+  description: 鸟类检测
+  category: 宠物识别
+  http:
+    method: POST
+    path: /api/birdDetect
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imgBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码(包含data:image/png;base64,)
+    location: body
+  - python_name: img_url
+    http_field: imgUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址
+- name: bird_global_type
+  description: 全球鸟类分类
+  category: 宠物识别
+  http:
+    method: POST
+    path: /api/birdGlobalType
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imgBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码(包含data:image/png;base64,)
+    location: body
+  - python_name: img_url
+    http_field: imgUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址
+- name: domestic_bird_type
+  description: 中国境内鸟类分类
+  category: 宠物识别
+  http:
+    method: POST
+    path: /api/domesticBirdType
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imgBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码(包含data:image/png;base64,)
+    location: body
+  - python_name: img_url
+    http_field: imgUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址
+- name: bird_type
+  description: 鸟类识别
+  category: 宠物识别
+  http:
+    method: POST
+    path: /api/birdType
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imgBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码(包含data:image/png;base64,)
+    location: body
+  - python_name: img_url
+    http_field: imgUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址
+- name: bird_europe
+  description: 欧洲鸟类分类
+  category: 宠物识别
+  http:
+    method: POST
+    path: /api/birdEurope
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imgBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码(包含data:image/png;base64,)
+    location: body
+  - python_name: img_url
+    http_field: imgUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址
+- name: get_bird_knowledge
+  description: 鸟类知识库查询
+  category: 宠物识别
+  http:
+    method: POST
+    path: /api/getBirdKnowledge
+    content_type: form-data
+  parameters:
+  - python_name: chinese_name
+    http_field: chineseName
+    type: string
+    required: false
+    default: ''
+    description: 鸟类名称（中文）
+    location: body
+  - python_name: english_name
+    http_field: englishName
+    type: string
+    required: false
+    default: ''
+    description: 鸟类名称（英文）
+    location: body
+  - python_name: latin_name
+    http_field: latinName
+    type: string
+    required: false
+    default: ''
+    description: 拉丁名称
+    location: body
+  - python_name: size
+    http_field: size
+    type: integer
+    required: false
+    default: 10
+    description: 查询页数量，默认10
+    location: body
+  - python_name: off_set
+    http_field: offSet
+    type: integer
+    required: false
+    default: 0
+    description: 起始页，从第0页开始，默认0
+    location: body

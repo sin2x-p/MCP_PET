@@ -1,0 +1,239 @@
+metadata:
+  name: invoice_financial
+  version: 1.0.0
+  description: 财务发票识别
+server:
+  api_base: ${API_BASE}
+  timeout: 30
+tools:
+- name: bank_card
+  description: 银行卡识别
+  category: 财务发票识别
+  http:
+    method: POST
+    path: /api/ocr/bankCard
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imgBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码(含data:image/png;base64,)
+    location: body
+  - python_name: img_url
+    http_field: imgUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址
+- name: purchase_car_invoice
+  description: 购车发票识别
+  category: 财务发票识别
+  http:
+    method: POST
+    path: /api/ocr/purchaseCarInvoice
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imgBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码(包含data:image/png;base64,)
+    location: body
+  - python_name: img_url
+    http_field: imgUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址
+- name: invoice
+  description: 通用发票识别
+  category: 财务发票识别
+  http:
+    method: POST
+    path: /api/ocr/invoice
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imgBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码(包含data:image/png;base64,)
+    location: body
+  - python_name: img_url
+    http_field: imgUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址
+- name: mixing_invoice
+  description: 混贴票据识别
+  category: 财务发票识别
+  http:
+    method: POST
+    path: /api/ocr/mixingInvoice
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imgBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码(包含data:image/png;base64,)
+    location: body
+  - python_name: img_url
+    http_field: imgUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址
+- name: bank_receipt
+  description: 银行回单识别
+  category: 财务发票识别
+  http:
+    method: POST
+    path: /api/ocr/bankReceipt
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imgBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码(包含data:image/png;base64,)
+    location: body
+  - python_name: img_url
+    http_field: imgUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址
+- name: bank_identification
+  description: 银行票据识别
+  category: 财务发票识别
+  http:
+    method: POST
+    path: /api/ocr/bankIdentification
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imgBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码(包含data:image/png;base64,)
+    location: body
+  - python_name: img_url
+    http_field: imgUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址
+- name: acceptance_bill
+  description: 承兑汇票识别
+  category: 财务发票识别
+  http:
+    method: POST
+    path: /api/ocr/acceptanceBill
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imgBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码(包含data:image/png;base64,)
+    location: body
+  - python_name: img_url
+    http_field: imgUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址
+- name: bank_flowing_water
+  description: 银行流水识别
+  category: 财务发票识别
+  http:
+    method: POST
+    path: /api/ocr/bankFlowingWater
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imgBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码(包含data:image/png;base64,)
+    location: body
+  - python_name: img_url
+    http_field: imgUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址
+- name: cloud_code_bank_name
+  description: 云码-银行卡号识别
+  category: 财务发票识别
+  http:
+    method: POST
+    path: /api/ocr/cloudCode/bankName
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imgBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码(包含data:image/png;base64,)
+    location: body
+  - python_name: img_url
+    http_field: imgUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址
+- name: cloud_code_bank_name_id_card
+  description: 云码-银行卡号+身份证识别
+  category: 财务发票识别
+  http:
+    method: POST
+    path: /api/ocr/cloudCode/bankNameIdCard
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imgBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码(包含data:image/png;base64,)
+    location: body
+  - python_name: img_url
+    http_field: imgUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址
+- name: cloud_code_bank_name_id_card_mobile
+  description: 云码-银行卡号+身份证+手机号识别
+  category: 财务发票识别
+  http:
+    method: POST
+    path: /api/ocr/cloudCode/bankNameIdCardMobile
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imgBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码(包含data:image/png;base64,)
+    location: body
+  - python_name: img_url
+    http_field: imgUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址

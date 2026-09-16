@@ -6,3 +6,7 @@ build/
 .venv/
 *.log
 AGENTS.md
+*.openapi.json
+*.whl
+promopt.txt
+*.tar

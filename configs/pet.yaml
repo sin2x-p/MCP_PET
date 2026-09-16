@@ -1,0 +1,740 @@
+metadata:
+  name: pet
+  version: 1.0.0
+  description: 宠物识别
+server:
+  api_base: ${API_BASE}
+  timeout: 30
+tools:
+- name: pet_type
+  description: 宠物品种识别（识别猫/狗品种）
+  category: 宠物识别
+  http:
+    method: POST
+    path: /api/petType
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imageBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码，和图片地址必须传一个
+    location: body
+  - python_name: image_url
+    http_field: imageUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址，和图片base64编码必须传一个
+  - python_name: pet_type
+    http_field: petType
+    type: integer
+    required: false
+    default: 0
+    description: 宠物类别：0为狗 1为猫
+    location: body
+  - python_name: top_k
+    http_field: topK
+    type: integer
+    required: false
+    default: 3
+    description: 返回前K个品种，默认3，最大10
+    location: body
+- name: pet_act
+  description: 宠物行为识别
+  category: 宠物识别
+  http:
+    method: POST
+    path: /api/things/petAct
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imageBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码(不能带data:image/png;base64头)，和图片地址必须传一个
+    location: body
+  - python_name: image_url
+    http_field: imageUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址，和图片base64编码必须传一个
+  - python_name: recognition_types
+    http_field: recognitionTypes
+    type: integer
+    required: false
+    default: 0
+    description: 识别类型，可多传，0=全部识别，默认0
+    location: body
+- name: create_pet_archives
+  description: 宠物鼻纹+脸创建档案
+  category: 宠物识别
+  http:
+    method: POST
+    path: /api/createPetArchives
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imageBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码，和图片地址必须传一个
+    location: body
+  - python_name: image_url
+    http_field: imageUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址，和图片base64编码必须传一个
+  - python_name: pet_id
+    http_field: petId
+    type: string
+    required: false
+    default: ''
+    description: 宠物档案ID，新建时不传；已有档案追加图片时传入
+    location: body
+  - python_name: mode
+    http_field: mode
+    type: integer
+    required: false
+    default: 0
+    description: 拍摄模式，0 横屏(默认) 1 夜间
+    location: body
+  - python_name: group_id
+    http_field: groupId
+    type: string
+    required: false
+    default: ''
+    description: 组ID，最长64字符，为空系统自动分配
+    location: body
+  - python_name: recog_type
+    http_field: recogType
+    type: integer
+    required: false
+    default: 0
+    description: 识别种类：0鼻纹(默认) 1脸部
+    location: body
+  - python_name: compare_level
+    http_field: compareLevel
+    type: integer
+    required: false
+    default: 2
+    description: 比对精细度 1(非常精细) 2(比较精细 默认) 3(比较宽松) 4(非常宽松)
+    location: body
+  - python_name: mark
+    http_field: mark
+    type: string
+    required: false
+    default: ''
+    description: 备注信息，最多265字符
+    location: body
+  - python_name: nickname
+    http_field: nickname
+    type: string
+    required: false
+    default: ''
+    description: 宠物昵称，最多32字符
+    location: body
+  - python_name: gender
+    http_field: gender
+    type: integer
+    required: false
+    default: 0
+    description: 性别 0为公 1为母
+    location: body
+  - python_name: date_of_birth
+    http_field: dateOfBirth
+    type: string
+    required: false
+    default: ''
+    description: 出生日期，yyyy-MM-dd格式
+    location: body
+  - python_name: birth_control_status
+    http_field: birthControlStatus
+    type: integer
+    required: false
+    default: 0
+    description: 绝育状态 0为未 1为已
+    location: body
+  - python_name: is_verification
+    http_field: isVerification
+    type: integer
+    required: false
+    default: 1
+    description: 是否开启唯一性校验 0不校验 1校验(默认)
+    location: body
+- name: create_pet_archives_from_dog_face
+  description: 狗脸创建宠物档案
+  category: 宠物识别
+  http:
+    method: POST
+    path: /api/createPetArchivesFromDogFace
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imageBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码，和图片地址必须传一个
+    location: body
+  - python_name: image_url
+    http_field: imageUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址，和图片base64编码必须传一个
+  - python_name: pet_id
+    http_field: petId
+    type: string
+    required: false
+    default: ''
+    description: 宠物档案ID
+    location: body
+  - python_name: mode
+    http_field: mode
+    type: integer
+    required: false
+    default: 0
+    description: 拍摄模式，0 横屏(默认) 1 夜间
+    location: body
+  - python_name: group_id
+    http_field: groupId
+    type: string
+    required: false
+    default: ''
+    description: 组ID，为空系统自动分配
+    location: body
+  - python_name: mark
+    http_field: mark
+    type: string
+    required: false
+    default: ''
+    description: 备注信息
+    location: body
+  - python_name: nickname
+    http_field: nickname
+    type: string
+    required: false
+    default: ''
+    description: 宠物昵称
+    location: body
+  - python_name: gender
+    http_field: gender
+    type: integer
+    required: false
+    default: 0
+    description: 性别 0为公 1为母
+    location: body
+  - python_name: date_of_birth
+    http_field: dateOfBirth
+    type: string
+    required: false
+    default: ''
+    description: 出生日期，yyyy-MM-dd
+    location: body
+  - python_name: birth_control_status
+    http_field: birthControlStatus
+    type: integer
+    required: false
+    default: 0
+    description: 绝育状态 0未 1已
+    location: body
+  - python_name: is_verification
+    http_field: isVerification
+    type: integer
+    required: false
+    default: 1
+    description: 唯一性校验 0不校验 1校验(默认)
+    location: body
+- name: create_pet_archives_from_cat_face
+  description: 猫脸创建宠物档案
+  category: 宠物识别
+  http:
+    method: POST
+    path: /api/createPetArchivesFromCatFace
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imageBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码，和图片地址必须传一个
+    location: body
+  - python_name: image_url
+    http_field: imageUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址，和图片base64编码必须传一个
+  - python_name: pet_id
+    http_field: petId
+    type: string
+    required: false
+    default: ''
+    description: 宠物档案ID，新建时不传；已有档案追加图片时传入
+    location: body
+  - python_name: mode
+    http_field: mode
+    type: integer
+    required: false
+    default: 0
+    description: 拍摄模式，0 横屏(默认) 1 夜间
+    location: body
+  - python_name: group_id
+    http_field: groupId
+    type: string
+    required: false
+    default: ''
+    description: 组ID，为空系统自动分配
+    location: body
+  - python_name: mark
+    http_field: mark
+    type: string
+    required: false
+    default: ''
+    description: 备注信息
+    location: body
+  - python_name: nickname
+    http_field: nickname
+    type: string
+    required: false
+    default: ''
+    description: 宠物昵称
+    location: body
+  - python_name: gender
+    http_field: gender
+    type: integer
+    required: false
+    default: 0
+    description: 性别 0为公 1为母
+    location: body
+  - python_name: date_of_birth
+    http_field: dateOfBirth
+    type: string
+    required: false
+    default: ''
+    description: 出生日期，yyyy-MM-dd
+    location: body
+  - python_name: birth_control_status
+    http_field: birthControlStatus
+    type: integer
+    required: false
+    default: 0
+    description: 绝育状态 0未 1已
+    location: body
+  - python_name: is_verification
+    http_field: isVerification
+    type: integer
+    required: false
+    default: 1
+    description: 唯一性校验 0不校验 1校验(默认)
+    location: body
+- name: upload_pet_image
+  description: 上传图片获取路径
+  category: 宠物识别
+  http:
+    method: POST
+    path: /api/uploadPetImage
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imageBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码，和图片地址必须传一个
+    location: body
+  - python_name: image_url
+    http_field: imageUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址，和图片base64编码必须传一个
+  - python_name: group_id
+    http_field: groupId
+    type: string
+    required: false
+    default: ''
+    description: 组ID，为空系统自动分配
+    location: body
+- name: upload_pet_image_find_pet_id
+  description: 1:N 搜索匹配（上传图片在库中搜索最相似的宠物）
+  category: 宠物识别
+  http:
+    method: POST
+    path: /api/uploadPetImageFindPeytId
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imageBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码，和图片地址必须传一个
+    location: body
+  - python_name: image_url
+    http_field: imageUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址，和图片base64编码必须传一个
+  - python_name: group_id
+    http_field: groupId
+    type: string
+    required: false
+    default: ''
+    description: 组ID，为空查全部，固定值all查全部
+    location: body
+  - python_name: pet_type
+    http_field: petType
+    type: integer
+    required: false
+    default: 0
+    description: 宠物类别：0为狗 1为猫（必填）
+    location: body
+  - python_name: recog_type
+    http_field: recogType
+    type: integer
+    required: false
+    default: 0
+    description: 识别种类：0为鼻纹 1为脸部（必填）
+    location: body
+  - python_name: top_k
+    http_field: topK
+    type: integer
+    required: false
+    default: 1
+    description: 最大返回结果数，默认1
+    location: body
+- name: check_pet_image_and_pet_id
+  description: 1:1 身份验证（验证图片是否为指定宠物）
+  category: 宠物识别
+  http:
+    method: POST
+    path: /api/checkPetImageAndPeytId
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imageBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码，和图片地址必须传一个
+    location: body
+  - python_name: image_url
+    http_field: imageUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址，和图片base64编码必须传一个
+  - python_name: group_id
+    http_field: groupId
+    type: string
+    required: false
+    default: ''
+    description: 组ID，为空系统自动分配
+    location: body
+  - python_name: pet_id
+    http_field: petId
+    type: string
+    required: false
+    default: ''
+    description: 宠物档案ID（必填）
+    location: body
+  - python_name: pet_type
+    http_field: petType
+    type: integer
+    required: false
+    default: 0
+    description: 宠物类别：0为狗 1为猫
+    location: body
+  - python_name: recog_type
+    http_field: recogType
+    type: integer
+    required: false
+    default: 0
+    description: 识别种类：0为鼻纹 1为脸部
+    location: body
+- name: delete_pet_image
+  description: 删除宠物档案图片
+  category: 宠物识别
+  http:
+    method: POST
+    path: /api/deletePetImageByImageId
+    content_type: json
+  parameters:
+  - python_name: pet_id
+    http_field: petId
+    type: string
+    required: true
+    default: ''
+    description: 宠物档案ID（必填）
+    location: body
+  - python_name: img_index
+    http_field: imgIndex
+    type: string
+    required: true
+    default: ''
+    description: 图片编号，传-1删除整个petId（必填）
+    location: body
+  - python_name: group_id
+    http_field: groupId
+    type: string
+    required: true
+    default: ''
+    description: 组ID（必填）
+    location: body
+  - python_name: mode
+    http_field: mode
+    type: integer
+    required: false
+    default: 0
+    description: 拍摄模式 0 横屏(默认) 1 夜间
+    location: body
+- name: pet_event
+  description: 宠物事件（确认或回滚档案创建）
+  category: 宠物识别
+  http:
+    method: POST
+    path: /api/petEvent
+    content_type: json
+  parameters:
+  - python_name: pet_id
+    http_field: petId
+    type: string
+    required: true
+    default: ''
+    description: 宠物档案ID（必填）
+    location: body
+  - python_name: event_type
+    http_field: eventType
+    type: string
+    required: true
+    default: ''
+    description: 事件类型，rollback 或 commit（必填）
+    location: body
+  - python_name: pet_type
+    http_field: petType
+    type: integer
+    required: false
+    default: 0
+    description: 宠物类型：0为狗 1为猫
+    location: body
+  - python_name: group_id
+    http_field: groupId
+    type: string
+    required: false
+    default: ''
+    description: 组ID，为空系统自动分配
+    location: body
+  - python_name: mode
+    http_field: mode
+    type: integer
+    required: false
+    default: 0
+    description: 拍摄模式 0 横屏(默认) 1 夜间
+    location: body
+- name: get_pet_archives_list
+  description: 档案列表筛选
+  category: 宠物识别
+  http:
+    method: POST
+    path: /api/getPetArchivesList
+    content_type: json
+  parameters:
+  - python_name: group_id
+    http_field: groupId
+    type: string
+    required: false
+    default: ''
+    description: 组ID，为空查当前用户，fixed值all查全部
+    location: body
+  - python_name: pet_id
+    http_field: petId
+    type: string
+    required: false
+    default: ''
+    description: 宠物档案ID
+    location: body
+  - python_name: pet_type
+    http_field: petType
+    type: integer
+    required: false
+    default: 0
+    description: 宠物类别，0狗 1猫
+    location: body
+  - python_name: page_num
+    http_field: pageNum
+    type: integer
+    required: false
+    default: 1
+    description: 页码，默认第一页
+    location: body
+  - python_name: page_size
+    http_field: pageSize
+    type: integer
+    required: false
+    default: 10
+    description: 每页数量，默认10，最大100
+    location: body
+- name: cat_checking
+  description: 猫关键点检测
+  category: 宠物识别
+  http:
+    method: POST
+    path: /api/catChecking
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imgBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码(含data:image/png;base64,)，和图片地址必须传一个
+    location: body
+  - python_name: image_url
+    http_field: imageUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址，和图片base64编码必须传一个
+  - python_name: texture_type
+    http_field: textureType
+    type: string
+    required: false
+    default: ''
+    description: 贴图样式，支持：sunglasses_1, sunglasses_3, weep1, weep2, weep3
+    location: body
+- name: dog_checking
+  description: 狗关键点检测
+  category: 宠物识别
+  http:
+    method: POST
+    path: /api/dogChecking
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imgBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码(含data:image/png;base64,)，和图片地址必须传一个
+    location: body
+  - python_name: image_url
+    http_field: imageUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址，和图片base64编码必须传一个
+  - python_name: texture_type
+    http_field: textureType
+    type: string
+    required: false
+    default: ''
+    description: 贴图样式，支持：sunglasses_1, sunglasses_3, weep1, weep2, weep3
+    location: body
+- name: pet_detect
+  description: 猫狗全身关键点识别
+  category: 宠物识别
+  http:
+    method: POST
+    path: /api/petDetect
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imageBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码(不能带data:image/png;base64头)，和图片地址必须传一个
+    location: body
+  - python_name: image_url
+    http_field: imageUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址，和图片base64编码必须传一个
+- name: pet_detect_furbo
+  description: 猫狗脸部关键点识别
+  category: 宠物识别
+  http:
+    method: POST
+    path: /api/petDetectFurbo
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imageBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码(不能带data:image/png;base64头)
+    location: body
+  - python_name: image_url
+    http_field: imageUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址，和图片base64编码必须传一个
+- name: cat_limb_checking
+  description: 猫四肢关键点检测
+  category: 宠物识别
+  http:
+    method: POST
+    path: /api/catLimbChecking
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imgBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码(含data:image/png;base64,)，和图片地址必须传一个
+    location: body
+  - python_name: image_url
+    http_field: imageUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址，和图片base64编码必须传一个
+- name: dog_limb_checking
+  description: 狗四肢关键点检测
+  category: 宠物识别
+  http:
+    method: POST
+    path: /api/dogLimbChecking
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imgBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码(含data:image/png;base64,)，和图片地址必须传一个
+    location: body
+  - python_name: image_url
+    http_field: imageUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址，和图片base64编码必须传一个
+- name: pet_leash_video_detect
+  description: 牵引绳检测（视频）
+  category: 宠物识别
+  http:
+    method: POST
+    path: /api/petLeashVideoDetect
+    content_type: form-data
+  parameters:
+  - python_name: video_base64
+    http_field: file
+    type: string
+    required: true
+    default: ''
+    description: 视频base64编码，大小不超过50M（必填）
+    location: body

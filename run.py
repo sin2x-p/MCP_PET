@@ -333,6 +333,652 @@ async def account_book(img_base64: str = "", house_side: int = 0) -> dict:
     })
 
 
+# ============ 医疗单据分类 ============
+
+@mcp.tool()
+async def genal_classify(
+    img_base64: str = "",
+    crop_img: int = 0,
+) -> dict:
+    """医疗单据分类
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+        crop_img: 是否需切割图片，识别混贴票据清单，0不切割(默认)，1切割
+    """
+    return await _post("/api/ocr/genalClassify", {
+        "imgBase64": img_base64,
+        "cropImg": crop_img,
+    })
+
+
+@mcp.tool()
+async def invoice_check_in_nation(
+    img_base64: str = "",
+    invoice_code: str = "",
+    invoice_number: str = "",
+    check_code: str = "",
+    pretax_amount: str = "",
+    invoicing_date: str = "",
+) -> dict:
+    """医疗票据查验（全国版）
+
+    Args:
+        img_base64: 图片base64编码
+        invoice_code: 发票代码
+        invoice_number: 发票号码
+        check_code: 校验码后6位
+        pretax_amount: 发票金额
+        invoicing_date: 开票日期
+    """
+    return await _post("/api/ocr/invoiceCheckInNation", {
+        "imgBase64": img_base64,
+        "invoiceCode": invoice_code,
+        "invoiceNumber": invoice_number,
+        "checkCode": check_code,
+        "pretaxAmount": pretax_amount,
+        "invoicingDate": invoicing_date,
+    })
+
+
+@mcp.tool()
+async def provide_aged(img_base64: str = "") -> dict:
+    """社保表单识别
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/ocr/provideAged", {"imgBase64": img_base64})
+
+
+# ============ 证件识别补充 ============
+
+@mcp.tool()
+async def business_card(img_base64: str = "") -> dict:
+    """名片识别
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/ocr/businessCard", {"imgBase64": img_base64})
+
+
+@mcp.tool()
+async def other_passport(img_base64: str = "") -> dict:
+    """护照识别（港澳台地区及境外）
+
+    Args:
+        img_base64: 图片base64编码
+    """
+    return await _post("/api/ocr/otherPassport", {"imgBase64": img_base64})
+
+
+@mcp.tool()
+async def mainland_passport(
+    img_base64: str = "",
+    card_side: str = "FRONT",
+) -> dict:
+    """港澳台来往内地通行证
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+        card_side: FRONT=港澳来往大陆通行证(默认)，BACK=台湾来往大陆通行证
+    """
+    return await _post("/api/ocr/mainland", {
+        "imgBase64": img_base64,
+        "cardSide": card_side,
+    })
+
+
+@mcp.tool()
+async def pass_identify(img_base64: str = "") -> dict:
+    """往来港澳通行证识别
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/ocr/passIdentify", {"imgBase64": img_base64})
+
+
+@mcp.tool()
+async def id_card_detection(img_base64: str = "") -> dict:
+    """身份证识别（质量检测）
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/ocr/IdCordDetection", {"imgBase64": img_base64})
+
+
+# ============ 车辆相关补充 ============
+
+@mcp.tool()
+async def purchase_car_invoice(img_base64: str = "") -> dict:
+    """购车发票识别
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/ocr/purchaseCarInvoice", {"imgBase64": img_base64})
+
+
+@mcp.tool()
+async def vehicle_certificate(img_base64: str = "") -> dict:
+    """车辆合格证识别
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/ocr/vehicleCertificate", {"imgBase64": img_base64})
+
+
+@mcp.tool()
+async def car_rental_license(img_base64: str = "") -> dict:
+    """汽车租赁经营备案凭证识别
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/ocr/carRentalLicense", {"imgBase64": img_base64})
+
+
+@mcp.tool()
+async def query_plate_no(vin: str) -> dict:
+    """VIN码查询车牌
+
+    Args:
+        vin: 车辆VIN码/车架号
+    """
+    return await _post("/api/ocr/queryPlateNo", {"vin": vin})
+
+
+@mcp.tool()
+async def get_vehicle_models(
+    vehicle_type: int,
+    vehicle_id: str = "",
+    vehicle_key_word: str = "",
+) -> dict:
+    """车型库查询
+
+    Args:
+        vehicle_type: 查询类型：1获取所有品牌 2根据品牌获取车系 3根据车系获取车型 4获取车型详细信息 5车型搜索
+        vehicle_id: 查找id：vehicleType为2时传品牌id，3时传车系id，4时传车型id
+        vehicle_key_word: 查找关键字：vehicleType为5（车型搜索）时必选
+    """
+    return await _post("/api/ocr/getVehicleModels", {
+        "vehicleType": vehicle_type,
+        "vehicleId": vehicle_id,
+        "vehicleKeyWord": vehicle_key_word,
+    })
+
+
+# ============ 发票识别 ============
+
+@mcp.tool()
+async def vat_invoice(img_base64: str = "") -> dict:
+    """增值税发票识别
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/ocr/vatInvoice", {"imgBase64": img_base64})
+
+
+@mcp.tool()
+async def common_invoice(img_base64: str = "") -> dict:
+    """普通发票识别
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/ocr/commonInvoice", {"imgBase64": img_base64})
+
+
+@mcp.tool()
+async def invoice(img_base64: str = "") -> dict:
+    """通用发票识别
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/ocr/invoice", {"imgBase64": img_base64})
+
+
+@mcp.tool()
+async def mixing_invoice(img_base64: str = "") -> dict:
+    """混贴票据识别
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/ocr/mixingInvoice", {"imgBase64": img_base64})
+
+
+@mcp.tool()
+async def invoice_check(img_base64: str = "") -> dict:
+    """发票查验
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/ocr/invoiceCheck", {"imgBase64": img_base64})
+
+
+@mcp.tool()
+async def qr_code_vat_bill_check(img_base64: str = "") -> dict:
+    """增值税发票查验（传图片）
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/ocr/qrCodeVatBillCheck", {"imgBase64": img_base64})
+
+
+# ============ 银行票据 ============
+
+@mcp.tool()
+async def bank_receipt(img_base64: str = "") -> dict:
+    """银行回单识别
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/ocr/bankReceipt", {"imgBase64": img_base64})
+
+
+@mcp.tool()
+async def bank_identification(img_base64: str = "") -> dict:
+    """银行票据识别
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/ocr/bankIdentification", {"imgBase64": img_base64})
+
+
+@mcp.tool()
+async def acceptance_bill(img_base64: str = "") -> dict:
+    """承兑汇票识别
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/ocr/acceptanceBill", {"imgBase64": img_base64})
+
+
+@mcp.tool()
+async def bank_flowing_water(img_base64: str = "") -> dict:
+    """银行流水识别
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/ocr/bankFlowingWater", {"imgBase64": img_base64})
+
+
+@mcp.tool()
+async def tax_certificate(img_base64: str = "") -> dict:
+    """税务证书识别
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/ocr/taxCertificate", {"imgBase64": img_base64})
+
+
+@mcp.tool()
+async def ocr_transfer_voucher(img_base64: str = "") -> dict:
+    """转账凭证识别
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/ocr/ocrTransferVoucher", {"imgBase64": img_base64})
+
+
+# ============ 物流/其他 ============
+
+@mcp.tool()
+async def waybill(img_base64: str = "") -> dict:
+    """快递单识别
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/ocr/waybill", {"imgBase64": img_base64})
+
+
+@mcp.tool()
+async def iofo_parse(img_base64: str = "") -> dict:
+    """文本解析
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/ocr/iofoParse", {"imgBase64": img_base64})
+
+
+# ============ 云码系列 ============
+
+@mcp.tool()
+async def cloud_code_id_card(img_base64: str = "") -> dict:
+    """云码-身份证识别
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/ocr/cloudCode/IdCard", {"imgBase64": img_base64})
+
+
+@mcp.tool()
+async def cloud_code_certificate(img_base64: str = "") -> dict:
+    """云码-证件识别
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/ocr/cloudCode/certificate", {"imgBase64": img_base64})
+
+
+@mcp.tool()
+async def cloud_code_bank_name(img_base64: str = "") -> dict:
+    """云码-银行卡号识别
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/ocr/cloudCode/bankName", {"imgBase64": img_base64})
+
+
+@mcp.tool()
+async def cloud_code_bank_name_id_card(img_base64: str = "") -> dict:
+    """云码-银行卡号+身份证识别
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/ocr/cloudCode/bankNameIdCard", {"imgBase64": img_base64})
+
+
+@mcp.tool()
+async def cloud_code_bank_name_id_card_mobile(img_base64: str = "") -> dict:
+    """云码-银行卡号+身份证+手机号识别
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/ocr/cloudCode/bankNameIdCardMobile", {"imgBase64": img_base64})
+
+
+@mcp.tool()
+async def cloud_code_mobile_double_card(img_base64: str = "") -> dict:
+    """云码-手机+双卡识别
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/ocr/cloudCode/mobileDoubleCard", {"imgBase64": img_base64})
+
+
+@mcp.tool()
+async def cloud_code_phone_card(img_base64: str = "") -> dict:
+    """云码-手机卡识别
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/ocr/cloudCode/phoneCard", {"imgBase64": img_base64})
+
+
+@mcp.tool()
+async def cloud_code_enterprise(img_base64: str = "") -> dict:
+    """云码-企业证件识别
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/ocr/cloudCode/enterprise", {"imgBase64": img_base64})
+
+
+@mcp.tool()
+async def cloud_code_extend_auth(img_base64: str = "") -> dict:
+    """云码-授权书识别
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/ocr/cloudCode/ExtendAuth", {"imgBase64": img_base64})
+
+
+# ============ 企业信息查询 ============
+
+@mcp.tool()
+async def check_company_info(company_name: str = "") -> dict:
+    """企业信息查询
+
+    Args:
+        company_name: 企业名称
+    """
+    return await _post("/api/ocr/checkCompanyInfo", {"companyName": company_name})
+
+
+@mcp.tool()
+async def check_company_all_info(company_name: str = "") -> dict:
+    """企业全部信息查询
+
+    Args:
+        company_name: 企业名称
+    """
+    return await _post("/api/ocr/checkCompanyAllInfo", {"companyName": company_name})
+
+
+@mcp.tool()
+async def check_company_allows(company_name: str = "") -> dict:
+    """企业资质查询
+
+    Args:
+        company_name: 企业名称
+    """
+    return await _post("/api/ocr/checkCompanyAllows", {"companyName": company_name})
+
+
+# ============ 网络状态检测 ============
+
+@mcp.tool()
+async def check_network_time() -> dict:
+    """网络时间校验"""
+    return await _post("/api/ocr/checkNetworkTime", {})
+
+
+@mcp.tool()
+async def check_network_status() -> dict:
+    """网络状态检测"""
+    return await _post("/api/ocr/checkNetworkStatus", {})
+
+
+# ============ 异步任务 ============
+
+@mcp.tool()
+async def send_async_task(
+    invoice_number: str = "",
+    invoicing_date: str = "",
+    pretax_amount: str = "",
+    acquisition_method: int = 0,
+) -> dict:
+    """数电票板式文件获取-发起任务
+
+    Args:
+        invoice_number: 发票号码
+        invoicing_date: 开票日期
+        pretax_amount: 金额
+        acquisition_method: 0异步版(默认)，1同步版
+    """
+    return await _post("/api/ocr/sendAsyncTask", {
+        "invoiceNumber": invoice_number,
+        "invoicingDate": invoicing_date,
+        "pretaxAmount": pretax_amount,
+        "acquisitionMethod": acquisition_method,
+    })
+
+
+@mcp.tool()
+async def get_async_task_result(
+    invoice_number: str = "",
+    invoicing_date: str = "",
+    pretax_amount: str = "",
+    acquisition_method: int = 0,
+) -> dict:
+    """数电票板式文件获取-获取结果
+
+    Args:
+        invoice_number: 发票号码
+        invoicing_date: 开票日期
+        pretax_amount: 金额
+        acquisition_method: 0异步版(默认)，1同步版
+    """
+    return await _post("/api/ocr/getAsyncTaskResult", {
+        "invoiceNumber": invoice_number,
+        "invoicingDate": invoicing_date,
+        "pretaxAmount": pretax_amount,
+        "acquisitionMethod": acquisition_method,
+    })
+
+
+# ============ 鸟类识别 ============
+
+@mcp.tool()
+async def bird_detect(img_base64: str = "") -> dict:
+    """鸟类检测
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/birdDetect", {"imgBase64": img_base64})
+
+
+@mcp.tool()
+async def bird_global_type(img_base64: str = "") -> dict:
+    """全球鸟类分类
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/birdGlobalType", {"imgBase64": img_base64})
+
+
+@mcp.tool()
+async def domestic_bird_type(img_base64: str = "") -> dict:
+    """中国境内鸟类分类
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/domesticBirdType", {"imgBase64": img_base64})
+
+
+@mcp.tool()
+async def bird_type(img_base64: str = "") -> dict:
+    """鸟类识别
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/birdType", {"imgBase64": img_base64})
+
+
+@mcp.tool()
+async def bird_europe(img_base64: str = "") -> dict:
+    """欧洲鸟类分类
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/birdEurope", {"imgBase64": img_base64})
+
+
+@mcp.tool()
+async def get_bird_knowledge(bird_name: str = "") -> dict:
+    """鸟类知识库查询
+
+    Args:
+        bird_name: 鸟类名称
+    """
+    return await _post("/api/getBirdKnowledge", {"birdName": bird_name})
+
+
+# ============ 动物识别 ============
+
+@mcp.tool()
+async def get_animal_type(img_base64: str = "") -> dict:
+    """动物识别
+
+    Args:
+        img_base64: 图片base64编码(包含data:image/png;base64,)
+    """
+    return await _post("/api/getAnimalType", {"imgBase64": img_base64})
+
+
+# ============ 车辆查询 ============
+
+@mcp.tool()
+async def query_vehicle(
+    vin: str = "",
+    license_no: str = "",
+    plate_type: str = "",
+) -> dict:
+    """车辆信息查询（车五项）
+
+    Args:
+        vin: 车架号，与licenseNo二选一
+        license_no: 车牌号
+        plate_type: 号牌种类：101小型汽车 102大型汽车 103小型新能源 104大型新能源
+    """
+    return await _post("/api/ocr/queryVehicle", {
+        "vin": vin,
+        "licenseNo": license_no,
+        "plateType": plate_type,
+    })
+
+
+@mcp.tool()
+async def query_vehicle_detailed(vin: str) -> dict:
+    """车辆信息查询（详版）
+
+    Args:
+        vin: 车架号
+    """
+    return await _post("/api/ocr/queryVehicleDetailed", {"vin": vin})
+
+
+@mcp.tool()
+async def get_car_factory_info(vin: str) -> dict:
+    """车辆出厂信息查询
+
+    Args:
+        vin: 车辆VIN码/车架号
+    """
+    return await _post("/api/ocr/getCarFactoryInfo", {"vin": vin})
+
+
+# ============ 获取鉴权Token ============
+
+@mcp.tool()
+async def get_access_token(
+    access_key: str = "",
+    access_secret: str = "",
+) -> dict:
+    """获取鉴权Token
+
+    Args:
+        access_key: 访问密钥
+        access_secret: 访问密钥Secret
+    """
+    return await _post("/api/getAccessToken", {
+        "accessKey": access_key,
+        "accessSecret": access_secret,
+    })
+
+
 # ============ 医疗相关 ============
 
 @mcp.tool()

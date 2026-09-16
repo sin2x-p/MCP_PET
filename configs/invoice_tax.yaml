@@ -1,0 +1,92 @@
+metadata:
+  name: invoice_tax
+  version: 1.0.0
+  description: 税务发票识别
+server:
+  api_base: ${API_BASE}
+  timeout: 30
+tools:
+- name: vat_invoice
+  description: 增值税发票识别
+  category: 税务发票识别
+  http:
+    method: POST
+    path: /api/ocr/vatInvoice
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imgBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码(包含data:image/png;base64,)
+    location: body
+  - python_name: img_url
+    http_field: imgUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址
+- name: common_invoice
+  description: 普通发票识别
+  category: 税务发票识别
+  http:
+    method: POST
+    path: /api/ocr/commonInvoice
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imgBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码(包含data:image/png;base64,)
+    location: body
+  - python_name: img_url
+    http_field: imgUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址
+- name: qr_code_vat_bill_check
+  description: 增值税发票查验（传图片）
+  category: 税务发票识别
+  http:
+    method: POST
+    path: /api/ocr/qrCodeVatBillCheck
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imgBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码(包含data:image/png;base64,)
+    location: body
+  - python_name: img_url
+    http_field: imgUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址
+- name: tax_certificate
+  description: 税务证书识别
+  category: 税务发票识别
+  http:
+    method: POST
+    path: /api/ocr/taxCertificate
+    content_type: form-data
+  parameters:
+  - python_name: img_base64
+    http_field: imgBase64
+    type: string
+    required: false
+    default: ''
+    description: 图片base64编码(包含data:image/png;base64,)
+    location: body
+  - python_name: img_url
+    http_field: imgUrl
+    type: string
+    required: false
+    default: ''
+    description: 图片URL地址
