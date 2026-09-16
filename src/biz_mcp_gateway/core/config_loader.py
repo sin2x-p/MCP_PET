@@ -1,6 +1,6 @@
-"""YAML配置加载器"""
+"""JSON配置加载器"""
 import os
-import yaml
+import json
 from pathlib import Path
 from typing import Any
 
@@ -11,12 +11,12 @@ class ConfigLoader:
     
     def load(self, config_name: str) -> dict:
         """加载指定配置文件"""
-        config_path = self.config_dir / f"{config_name}.yaml"
+        config_path = self.config_dir / f"{config_name}.json"
         if not config_path.exists():
             raise FileNotFoundError(f"配置文件不存在: {config_path}")
         
         with open(config_path, "r", encoding="utf-8") as f:
-            config = yaml.safe_load(f)
+            config = json.load(f)
         
         # 处理环境变量
         config = self._resolve_env_vars(config)
@@ -25,7 +25,7 @@ class ConfigLoader:
     def load_all(self) -> dict[str, dict]:
         """加载所有配置文件"""
         configs = {}
-        for config_file in self.config_dir.glob("*.yaml"):
+        for config_file in self.config_dir.glob("*.json"):
             name = config_file.stem
             configs[name] = self.load(name)
         return configs

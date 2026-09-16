@@ -1,0 +1,531 @@
+{
+  "metadata": {
+    "name": "certificate",
+    "version": "1.0.0",
+    "description": "证件识别"
+  },
+  "server": {
+    "api_base": "${API_BASE}",
+    "timeout": 30
+  },
+  "tools": [
+    {
+      "name": "identity_card",
+      "description": "身份证识别",
+      "category": "证件识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/ocr/identityCard",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "img_base64",
+          "http_field": "imgBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码(含data:image/png;base64,)",
+          "location": "body"
+        },
+        {
+          "python_name": "img_url",
+          "http_field": "imgUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址"
+        },
+        {
+          "python_name": "crop_type",
+          "http_field": "cropType",
+          "type": "integer",
+          "required": false,
+          "default": 0,
+          "description": "0=实拍图 1=复印件",
+          "location": "body"
+        },
+        {
+          "python_name": "detect_quality",
+          "http_field": "detectQuality",
+          "type": "integer",
+          "required": false,
+          "default": 0,
+          "description": "是否开启质量检测（0关闭 1开启）",
+          "location": "body"
+        },
+        {
+          "python_name": "detect_risk",
+          "http_field": "detectRisk",
+          "type": "integer",
+          "required": false,
+          "default": 0,
+          "description": "是否开启风险检测（0关闭 1开启）",
+          "location": "body"
+        }
+      ]
+    },
+    {
+      "name": "business_license",
+      "description": "营业执照识别",
+      "category": "证件识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/ocr/businessLicense",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "img_base64",
+          "http_field": "imgBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码(含data:image/png;base64,)",
+          "location": "body"
+        },
+        {
+          "python_name": "img_url",
+          "http_field": "imgUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址"
+        }
+      ]
+    },
+    {
+      "name": "passport",
+      "description": "护照识别（中国大陆地区）",
+      "category": "证件识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/ocr/passport",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "img_base64",
+          "http_field": "imgBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码(含data:image/png;base64,)",
+          "location": "body"
+        },
+        {
+          "python_name": "img_url",
+          "http_field": "imgUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址"
+        }
+      ]
+    },
+    {
+      "name": "vehicle_license",
+      "description": "行驶证识别",
+      "category": "证件识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/ocr/vehicleLicense",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "img_base64",
+          "http_field": "imgBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码",
+          "location": "body"
+        },
+        {
+          "python_name": "img_url",
+          "http_field": "imgUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址"
+        },
+        {
+          "python_name": "card_side",
+          "http_field": "cardSide",
+          "type": "string",
+          "required": false,
+          "default": "FRONT",
+          "description": "FRONT=主页(默认) BACK=副页 ALL=主副页都识别",
+          "location": "body"
+        }
+      ]
+    },
+    {
+      "name": "driving_license",
+      "description": "驾驶证识别",
+      "category": "证件识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/ocr/drivingLicense",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "img_base64",
+          "http_field": "imgBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码",
+          "location": "body"
+        },
+        {
+          "python_name": "img_url",
+          "http_field": "imgUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址"
+        },
+        {
+          "python_name": "card_side",
+          "http_field": "cardSide",
+          "type": "string",
+          "required": false,
+          "default": "FRONT",
+          "description": "FRONT=主页(默认) BACK=副页",
+          "location": "body"
+        }
+      ]
+    },
+    {
+      "name": "business_card",
+      "description": "名片识别",
+      "category": "证件识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/ocr/businessCard",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "img_base64",
+          "http_field": "imgBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码(包含data:image/png;base64,)",
+          "location": "body"
+        },
+        {
+          "python_name": "img_url",
+          "http_field": "imgUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址"
+        }
+      ]
+    },
+    {
+      "name": "other_passport",
+      "description": "护照识别（港澳台地区及境外）",
+      "category": "证件识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/ocr/otherPassport",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "img_base64",
+          "http_field": "imgBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码",
+          "location": "body"
+        },
+        {
+          "python_name": "img_url",
+          "http_field": "imgUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址"
+        }
+      ]
+    },
+    {
+      "name": "mainland_passport",
+      "description": "港澳台来往内地通行证",
+      "category": "证件识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/ocr/mainland",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "img_base64",
+          "http_field": "imgBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码(包含data:image/png;base64,)",
+          "location": "body"
+        },
+        {
+          "python_name": "img_url",
+          "http_field": "imgUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址"
+        },
+        {
+          "python_name": "card_side",
+          "http_field": "cardSide",
+          "type": "string",
+          "required": false,
+          "default": "FRONT",
+          "description": "FRONT=港澳来往大陆通行证(默认)，BACK=台湾来往大陆通行证",
+          "location": "body"
+        }
+      ]
+    },
+    {
+      "name": "id_card_detection",
+      "description": "身份证识别（质量检测）",
+      "category": "证件识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/ocr/IdCordDetection",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "img_base64",
+          "http_field": "imgBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码(包含data:image/png;base64,)",
+          "location": "body"
+        },
+        {
+          "python_name": "img_url",
+          "http_field": "imgUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址"
+        }
+      ]
+    },
+    {
+      "name": "vehicle_certificate",
+      "description": "车辆合格证识别",
+      "category": "证件识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/ocr/vehicleCertificate",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "img_base64",
+          "http_field": "imgBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码(包含data:image/png;base64,)",
+          "location": "body"
+        },
+        {
+          "python_name": "img_url",
+          "http_field": "imgUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址"
+        }
+      ]
+    },
+    {
+      "name": "car_rental_license",
+      "description": "汽车租赁经营备案凭证识别",
+      "category": "证件识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/ocr/carRentalLicense",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "img_base64",
+          "http_field": "imgBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码(包含data:image/png;base64,)",
+          "location": "body"
+        },
+        {
+          "python_name": "img_url",
+          "http_field": "imgUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址"
+        }
+      ]
+    },
+    {
+      "name": "cloud_code_id_card",
+      "description": "云码-身份证识别",
+      "category": "证件识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/ocr/cloudCode/IdCard",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "img_base64",
+          "http_field": "imgBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码(包含data:image/png;base64,)",
+          "location": "body"
+        },
+        {
+          "python_name": "img_url",
+          "http_field": "imgUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址"
+        }
+      ]
+    },
+    {
+      "name": "cloud_code_certificate",
+      "description": "云码-证件识别",
+      "category": "证件识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/ocr/cloudCode/certificate",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "img_base64",
+          "http_field": "imgBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码(包含data:image/png;base64,)",
+          "location": "body"
+        },
+        {
+          "python_name": "img_url",
+          "http_field": "imgUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址"
+        }
+      ]
+    },
+    {
+      "name": "cloud_code_mobile_double_card",
+      "description": "云码-手机+双卡识别",
+      "category": "证件识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/ocr/cloudCode/mobileDoubleCard",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "img_base64",
+          "http_field": "imgBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码(包含data:image/png;base64,)",
+          "location": "body"
+        },
+        {
+          "python_name": "img_url",
+          "http_field": "imgUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址"
+        }
+      ]
+    },
+    {
+      "name": "cloud_code_phone_card",
+      "description": "云码-手机卡识别",
+      "category": "证件识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/ocr/cloudCode/phoneCard",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "img_base64",
+          "http_field": "imgBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码(包含data:image/png;base64,)",
+          "location": "body"
+        },
+        {
+          "python_name": "img_url",
+          "http_field": "imgUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址"
+        }
+      ]
+    },
+    {
+      "name": "license_plate",
+      "description": "车牌识别",
+      "category": "证件识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/ocr/licensePlate",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "img_base64",
+          "http_field": "imgBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码",
+          "location": "body"
+        },
+        {
+          "python_name": "img_url",
+          "http_field": "imgUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址"
+        }
+      ]
+    }
+  ]
+}
