@@ -90,7 +90,11 @@ class HttpAdapter:
             return {"error": "请求超时，请稍后重试"}
         except httpx.HTTPStatusError as e:
             logger.error(f"[ERROR] HTTP错误: status={e.response.status_code}")
-            return {"error": f"服务端返回错误: {e.response.status_code}"}
+            try:
+                error_body = e.response.json()
+            except Exception:
+                error_body = e.response.text
+            return {"error": f"服务端返回错误: {e.response.status_code}", "detail": error_body}
         except Exception as e:
             logger.error(f"[ERROR] 请求异常: {str(e)}")
             return {"error": f"请求异常: {str(e)}"}
