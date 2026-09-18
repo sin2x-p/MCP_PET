@@ -1,0 +1,51 @@
+{
+  "metadata": {
+    "name": "medical_classify",
+    "version": "1.0.0",
+    "description": "医疗单据分类"
+  },
+  "server": {
+    "api_base": "https://ai.inspirvision.cn/s",
+    "timeout": 30
+  },
+  "tools": [
+    {
+      "name": "genal_classify",
+      "description": "医疗单据分类",
+      "category": "医疗票据识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/ocr/genalClassify",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "img_base64",
+          "http_field": "imgBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码(包含data:image/png;base64,)",
+          "location": "body"
+        },
+        {
+          "python_name": "img_url",
+          "http_field": "imgUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址"
+        },
+        {
+          "python_name": "crop_img",
+          "http_field": "cropImg",
+          "type": "integer",
+          "required": false,
+          "default": 0,
+          "description": "是否需切割图片，识别混贴票据清单，0不切割(默认)，1切割",
+          "location": "body"
+        }
+      ]
+    }
+  ]
+}

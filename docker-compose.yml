@@ -1,90 +1,188 @@
-version: '3.8'
-
 services:
-  # 宠物识别
-  mcp-pet:
-    build: .
-    environment:
-      - LOG_LEVEL=INFO
-      - MCP_CONFIG=pet
-      - MCP_MODE=http
-      - TOKEN_SOURCE=header
+  nginx:
+    image: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
     ports:
-      - "8001:8000"
+      - "8000:80"
+    depends_on:
+      - pet_breed
+      - pet_act
+      - pet_archives
+      - pet_face
+      - pet_detect
+      - pet_limb
+      - pet_leash
+      - bird_detect
+      - bird_global
+      - bird_domestic
+      - bird_north_america
+      - bird_europe
+      - bird_knowledge
+      - bird_animal
+      - insurance
+      - medical_listing
+      - medical_record
+      - medical_classify
+      - medical_inspection
+      - medical_invoice
+      - medical_knowledge
+      - medical_check
+      - general
+      - certificate
+      - invoice_financial
+      - invoice_tax
+      - vehicle
+
+  # 宠物识别
+  pet_breed:
+    image: biz-mcp-gateway
+    environment:
+      - MCP_CONFIG=pet_breed
+      - TOKEN_SOURCE=header
+  pet_act:
+    image: biz-mcp-gateway
+    environment:
+      - MCP_CONFIG=pet_act
+      - TOKEN_SOURCE=header
+  pet_archives:
+    image: biz-mcp-gateway
+    environment:
+      - MCP_CONFIG=pet_archives
+      - TOKEN_SOURCE=header
+  pet_face:
+    image: biz-mcp-gateway
+    environment:
+      - MCP_CONFIG=pet_face
+      - TOKEN_SOURCE=header
+  pet_detect:
+    image: biz-mcp-gateway
+    environment:
+      - MCP_CONFIG=pet_detect
+      - TOKEN_SOURCE=header
+  pet_limb:
+    image: biz-mcp-gateway
+    environment:
+      - MCP_CONFIG=pet_limb
+      - TOKEN_SOURCE=header
+  pet_leash:
+    image: biz-mcp-gateway
+    environment:
+      - MCP_CONFIG=pet_leash
+      - TOKEN_SOURCE=header
 
   # 鸟类识别
-  mcp-bird:
-    build: .
+  bird_detect:
+    image: biz-mcp-gateway
     environment:
-      - LOG_LEVEL=INFO
-      - MCP_CONFIG=bird
-      - MCP_MODE=http
+      - MCP_CONFIG=bird_detect
       - TOKEN_SOURCE=header
-    ports:
-      - "8002:8000"
+  bird_global:
+    image: biz-mcp-gateway
+    environment:
+      - MCP_CONFIG=bird_global
+      - TOKEN_SOURCE=header
+  bird_domestic:
+    image: biz-mcp-gateway
+    environment:
+      - MCP_CONFIG=bird_domestic
+      - TOKEN_SOURCE=header
+  bird_north_america:
+    image: biz-mcp-gateway
+    environment:
+      - MCP_CONFIG=bird_north_america
+      - TOKEN_SOURCE=header
+  bird_europe:
+    image: biz-mcp-gateway
+    environment:
+      - MCP_CONFIG=bird_europe
+      - TOKEN_SOURCE=header
+  bird_knowledge:
+    image: biz-mcp-gateway
+    environment:
+      - MCP_CONFIG=bird_knowledge
+      - TOKEN_SOURCE=header
+  bird_animal:
+    image: biz-mcp-gateway
+    environment:
+      - MCP_CONFIG=bird_animal
+      - TOKEN_SOURCE=header
+
+  # 保险识别
+  insurance:
+    image: biz-mcp-gateway
+    environment:
+      - MCP_CONFIG=insurance
+      - TOKEN_SOURCE=header
+
+  # 医疗识别
+  medical_listing:
+    image: biz-mcp-gateway
+    environment:
+      - MCP_CONFIG=medical_listing
+      - TOKEN_SOURCE=header
+  medical_record:
+    image: biz-mcp-gateway
+    environment:
+      - MCP_CONFIG=medical_record
+      - TOKEN_SOURCE=header
+  medical_classify:
+    image: biz-mcp-gateway
+    environment:
+      - MCP_CONFIG=medical_classify
+      - TOKEN_SOURCE=header
+  medical_inspection:
+    image: biz-mcp-gateway
+    environment:
+      - MCP_CONFIG=medical_inspection
+      - TOKEN_SOURCE=header
+  medical_invoice:
+    image: biz-mcp-gateway
+    environment:
+      - MCP_CONFIG=medical_invoice
+      - TOKEN_SOURCE=header
+  medical_knowledge:
+    image: biz-mcp-gateway
+    environment:
+      - MCP_CONFIG=medical_knowledge
+      - TOKEN_SOURCE=header
+  medical_check:
+    image: biz-mcp-gateway
+    environment:
+      - MCP_CONFIG=medical_check
+      - TOKEN_SOURCE=header
 
   # 通用能力
-  mcp-general:
-    build: .
+  general:
+    image: biz-mcp-gateway
     environment:
-      - LOG_LEVEL=INFO
       - MCP_CONFIG=general
-      - MCP_MODE=http
       - TOKEN_SOURCE=header
-    ports:
-      - "8003:8000"
 
   # 证件识别
-  mcp-certificate:
-    build: .
+  certificate:
+    image: biz-mcp-gateway
     environment:
-      - LOG_LEVEL=INFO
       - MCP_CONFIG=certificate
-      - MCP_MODE=http
       - TOKEN_SOURCE=header
-    ports:
-      - "8004:8000"
-
-  # 医疗票据
-  mcp-invoice-medical:
-    build: .
-    environment:
-      - LOG_LEVEL=INFO
-      - MCP_CONFIG=invoice_medical
-      - MCP_MODE=http
-      - TOKEN_SOURCE=header
-    ports:
-      - "8005:8000"
 
   # 财务发票
-  mcp-invoice-financial:
-    build: .
+  invoice_financial:
+    image: biz-mcp-gateway
     environment:
-      - LOG_LEVEL=INFO
       - MCP_CONFIG=invoice_financial
-      - MCP_MODE=http
       - TOKEN_SOURCE=header
-    ports:
-      - "8006:8000"
 
   # 税务发票
-  mcp-invoice-tax:
-    build: .
+  invoice_tax:
+    image: biz-mcp-gateway
     environment:
-      - LOG_LEVEL=INFO
       - MCP_CONFIG=invoice_tax
-      - MCP_MODE=http
       - TOKEN_SOURCE=header
-    ports:
-      - "8007:8000"
 
   # 车辆识别
-  mcp-vehicle:
-    build: .
+  vehicle:
+    image: biz-mcp-gateway
     environment:
-      - LOG_LEVEL=INFO
       - MCP_CONFIG=vehicle
-      - MCP_MODE=http
       - TOKEN_SOURCE=header
-    ports:
-      - "8008:8000"

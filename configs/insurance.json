@@ -1,0 +1,80 @@
+{
+  "metadata": {
+    "name": "insurance",
+    "version": "1.0.0",
+    "description": "保险识别"
+  },
+  "server": {
+    "api_base": "https://ai.inspirvision.cn/s",
+    "timeout": 30
+  },
+  "tools": [
+    {
+      "name": "auto_insurance",
+      "description": "车险保单识别",
+      "category": "通用能力",
+      "http": {
+        "method": "POST",
+        "path": "/api/ocr/policy/autoInsurance",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "img_base64",
+          "http_field": "imgBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码",
+          "location": "body"
+        },
+        {
+          "python_name": "img_url",
+          "http_field": "imgUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址"
+        },
+        {
+          "python_name": "show_seal",
+          "http_field": "showSeal",
+          "type": "string",
+          "required": false,
+          "default": "0",
+          "description": "是否印章检测（0不检测 默认 1检测）",
+          "location": "body"
+        }
+      ]
+    },
+    {
+      "name": "life_insurance",
+      "description": "寿险保单识别",
+      "category": "通用能力",
+      "http": {
+        "method": "POST",
+        "path": "/api/ocr/policy/lifeInsurance",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "img_base64",
+          "http_field": "imgBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码",
+          "location": "body"
+        },
+        {
+          "python_name": "img_url",
+          "http_field": "imgUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址"
+        }
+      ]
+    }
+  ]
+}

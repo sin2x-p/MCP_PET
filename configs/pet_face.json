@@ -1,0 +1,118 @@
+{
+  "metadata": {
+    "name": "pet_face",
+    "version": "1.0.0",
+    "description": "猫狗脸部关键点识别"
+  },
+  "server": {
+    "api_base": "https://ai.inspirvision.cn/s",
+    "timeout": 30
+  },
+  "tools": [
+    {
+      "name": "cat_checking",
+      "description": "猫关键点检测",
+      "category": "宠物识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/catChecking",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "img_base64",
+          "http_field": "imgBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码(含data:image/png;base64,)，和图片地址必须传一个",
+          "location": "body"
+        },
+        {
+          "python_name": "image_url",
+          "http_field": "imageUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址，和图片base64编码必须传一个"
+        },
+        {
+          "python_name": "texture_type",
+          "http_field": "textureType",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "贴图样式，支持：sunglasses_1, sunglasses_3, weep1, weep2, weep3",
+          "location": "body"
+        }
+      ]
+    },
+    {
+      "name": "dog_checking",
+      "description": "狗关键点检测",
+      "category": "宠物识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/dogChecking",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "img_base64",
+          "http_field": "imgBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码(含data:image/png;base64,)，和图片地址必须传一个",
+          "location": "body"
+        },
+        {
+          "python_name": "image_url",
+          "http_field": "imageUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址，和图片base64编码必须传一个"
+        },
+        {
+          "python_name": "texture_type",
+          "http_field": "textureType",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "贴图样式，支持：sunglasses_1, sunglasses_3, weep1, weep2, weep3",
+          "location": "body"
+        }
+      ]
+    },
+    {
+      "name": "pet_detect_furbo",
+      "description": "猫狗脸部关键点识别",
+      "category": "宠物识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/petDetectFurbo",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "img_base64",
+          "http_field": "imageBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码(不能带data:image/png;base64头)",
+          "location": "body"
+        },
+        {
+          "python_name": "image_url",
+          "http_field": "imageUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址，和图片base64编码必须传一个"
+        }
+      ]
+    }
+  ]
+}

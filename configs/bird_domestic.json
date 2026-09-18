@@ -1,0 +1,42 @@
+{
+  "metadata": {
+    "name": "bird_domestic",
+    "version": "1.0.0",
+    "description": "国内鸟类品种识别"
+  },
+  "server": {
+    "api_base": "https://ai.inspirvision.cn/s",
+    "timeout": 30
+  },
+  "tools": [
+    {
+      "name": "domestic_bird_type",
+      "description": "中国境内鸟类分类",
+      "category": "鸟类识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/domesticBirdType",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "img_base64",
+          "http_field": "imgBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码(包含data:image/png;base64,)",
+          "location": "body"
+        },
+        {
+          "python_name": "img_url",
+          "http_field": "imgUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址"
+        }
+      ]
+    }
+  ]
+}

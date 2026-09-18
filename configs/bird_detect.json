@@ -1,0 +1,42 @@
+{
+  "metadata": {
+    "name": "bird_detect",
+    "version": "1.0.0",
+    "description": "鸟类检测"
+  },
+  "server": {
+    "api_base": "https://ai.inspirvision.cn/s",
+    "timeout": 30
+  },
+  "tools": [
+    {
+      "name": "bird_detect",
+      "description": "鸟类检测",
+      "category": "鸟类识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/birdDetect",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "img_base64",
+          "http_field": "imgBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码(包含data:image/png;base64,)",
+          "location": "body"
+        },
+        {
+          "python_name": "img_url",
+          "http_field": "imgUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "metadata": {
+    "name": "bird_knowledge",
+    "version": "1.0.0",
+    "description": "鸟类百科"
+  },
+  "server": {
+    "api_base": "https://ai.inspirvision.cn/s",
+    "timeout": 30
+  },
+  "tools": [
+    {
+      "name": "get_bird_knowledge",
+      "description": "鸟类知识库查询",
+      "category": "鸟类识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/getBirdKnowledge",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "chinese_name",
+          "http_field": "chineseName",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "鸟类名称（中文）",
+          "location": "body"
+        },
+        {
+          "python_name": "english_name",
+          "http_field": "englishName",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "鸟类名称（英文）",
+          "location": "body"
+        },
+        {
+          "python_name": "latin_name",
+          "http_field": "latinName",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "拉丁名称",
+          "location": "body"
+        },
+        {
+          "python_name": "size",
+          "http_field": "size",
+          "type": "integer",
+          "required": false,
+          "default": 10,
+          "description": "查询页数量，默认10",
+          "location": "body"
+        },
+        {
+          "python_name": "off_set",
+          "http_field": "offSet",
+          "type": "integer",
+          "required": false,
+          "default": 0,
+          "description": "起始页，从第0页开始，默认0",
+          "location": "body"
+        }
+      ]
+    }
+  ]
+}

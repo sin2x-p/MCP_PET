@@ -14,7 +14,6 @@ RUN pip install --no-cache-dir .
 ENV LOG_LEVEL=INFO
 ENV MCP_CONFIG=all
 ENV MCP_MODE=http
-ENV TOKEN_SOURCE=header
 
 EXPOSE 8000
 

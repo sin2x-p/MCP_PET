@@ -1,0 +1,34 @@
+{
+  "metadata": {
+    "name": "pet_leash",
+    "version": "1.0.0",
+    "description": "遛狗不牵绳检测"
+  },
+  "server": {
+    "api_base": "https://ai.inspirvision.cn/s",
+    "timeout": 30
+  },
+  "tools": [
+    {
+      "name": "pet_leash_video_detect",
+      "description": "牵引绳检测（视频）",
+      "category": "宠物识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/petLeashVideoDetect",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "video_base64",
+          "http_field": "file",
+          "type": "string",
+          "required": true,
+          "default": "",
+          "description": "视频base64编码，大小不超过50M（必填）",
+          "location": "body"
+        }
+      ]
+    }
+  ]
+}

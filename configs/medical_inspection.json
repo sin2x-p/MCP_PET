@@ -1,0 +1,51 @@
+{
+  "metadata": {
+    "name": "medical_inspection",
+    "version": "1.0.0",
+    "description": "化验单识别"
+  },
+  "server": {
+    "api_base": "https://ai.inspirvision.cn/s",
+    "timeout": 30
+  },
+  "tools": [
+    {
+      "name": "inspection_report",
+      "description": "化验单识别",
+      "category": "医疗票据识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/ocr/inspectionReport",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "img_base64",
+          "http_field": "imgBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码",
+          "location": "body"
+        },
+        {
+          "python_name": "img_url",
+          "http_field": "imgUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址"
+        },
+        {
+          "python_name": "tct",
+          "http_field": "TCT",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "是否TCT样式（1=TCT样式，默认0）",
+          "location": "body"
+        }
+      ]
+    }
+  ]
+}

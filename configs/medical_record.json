@@ -1,0 +1,51 @@
+{
+  "metadata": {
+    "name": "medical_record",
+    "version": "1.0.0",
+    "description": "病历单据识别"
+  },
+  "server": {
+    "api_base": "https://ai.inspirvision.cn/s",
+    "timeout": 30
+  },
+  "tools": [
+    {
+      "name": "discharge_abstract",
+      "description": "病历单据识别",
+      "category": "医疗票据识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/ocr/dischargeAbstract",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "img_base64",
+          "http_field": "imgBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码",
+          "location": "body"
+        },
+        {
+          "python_name": "img_url",
+          "http_field": "imgUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址"
+        },
+        {
+          "python_name": "kd_use_flag",
+          "http_field": "kdUseFlag",
+          "type": "integer",
+          "required": false,
+          "default": 0,
+          "description": "是否知识库匹配（0否 1是）",
+          "location": "body"
+        }
+      ]
+    }
+  ]
+}

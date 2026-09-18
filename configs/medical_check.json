@@ -1,0 +1,598 @@
+{
+  "metadata": {
+    "name": "medical_check",
+    "version": "1.0.0",
+    "description": "医疗票据查验"
+  },
+  "server": {
+    "api_base": "https://ai.inspirvision.cn/s",
+    "timeout": 30
+  },
+  "tools": [
+    {
+      "name": "invoice_check",
+      "description": "发票查验",
+      "category": "医疗票据识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/ocr/invoiceCheck",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "img_base64",
+          "http_field": "imgBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码(包含data:image/png;base64,)",
+          "location": "body"
+        },
+        {
+          "python_name": "img_url",
+          "http_field": "imgUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址"
+        }
+      ]
+    },
+    {
+      "name": "qr_code_invoice_check",
+      "description": "医疗票据查验（传图片识别发票信息后查验）",
+      "category": "医疗票据识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/ocr/qrCodeInvoiceCheck",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "img_base64",
+          "http_field": "imgBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码(含data:image/png;base64,)",
+          "location": "body"
+        },
+        {
+          "python_name": "img_url",
+          "http_field": "imgUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址"
+        },
+        {
+          "python_name": "id_card_no",
+          "http_field": "idCardNo",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "身份证后六位，部分地区获取明细必填",
+          "location": "body"
+        },
+        {
+          "python_name": "invoicing_date",
+          "http_field": "invoicingDate",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "开票日期，如 20240118",
+          "location": "body"
+        },
+        {
+          "python_name": "payer",
+          "http_field": "payer",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "交款人信息，一年以上票据必传",
+          "location": "body"
+        },
+        {
+          "python_name": "need_pdf",
+          "http_field": "needPdf",
+          "type": "integer",
+          "required": false,
+          "default": 1,
+          "description": "是否需要明细（0不需要 1需要，默认1）",
+          "location": "body"
+        }
+      ]
+    },
+    {
+      "name": "invoice_check_all",
+      "description": "医疗电子发票查验（兼容版）。支持传图片或发票信息进行查验。",
+      "category": "医疗票据识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/ocr/invoiceCheckAll",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "invoice_code",
+          "http_field": "invoiceCode",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "发票代码",
+          "location": "body"
+        },
+        {
+          "python_name": "invoice_number",
+          "http_field": "invoiceNumber",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "发票号码",
+          "location": "body"
+        },
+        {
+          "python_name": "check_code",
+          "http_field": "checkCode",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "校验码后6位",
+          "location": "body"
+        },
+        {
+          "python_name": "pretax_amount",
+          "http_field": "pretaxAmount",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "发票金额",
+          "location": "body"
+        },
+        {
+          "python_name": "invoicing_date",
+          "http_field": "invoicingDate",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "开票日期，如 20240118",
+          "location": "body"
+        },
+        {
+          "python_name": "payer",
+          "http_field": "payer",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "交款人信息，一年以上票据必传",
+          "location": "body"
+        },
+        {
+          "python_name": "id_card_no",
+          "http_field": "idCardNo",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "身份证后六位",
+          "location": "body"
+        },
+        {
+          "python_name": "need_pdf",
+          "http_field": "needPdf",
+          "type": "integer",
+          "required": false,
+          "default": 1,
+          "description": "是否需要明细（0不需要 1需要，默认1）",
+          "location": "body"
+        },
+        {
+          "python_name": "img_base64",
+          "http_field": "imgBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码(含data:image/png;base64,)，与发票信息二选一",
+          "location": "body"
+        },
+        {
+          "python_name": "img_url",
+          "http_field": "imgUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址"
+        }
+      ]
+    },
+    {
+      "name": "invoice_check_match_all",
+      "description": "医疗电子发票查验-医保版",
+      "category": "医疗票据识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/ocr/invoiceCheckMatchAll",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "img_base64",
+          "http_field": "imgBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码",
+          "location": "body"
+        },
+        {
+          "python_name": "img_url",
+          "http_field": "imgUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址"
+        },
+        {
+          "python_name": "invoice_code",
+          "http_field": "invoiceCode",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "发票代码",
+          "location": "body"
+        },
+        {
+          "python_name": "invoice_number",
+          "http_field": "invoiceNumber",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "发票号码",
+          "location": "body"
+        },
+        {
+          "python_name": "check_code",
+          "http_field": "checkCode",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "校验码后6位",
+          "location": "body"
+        },
+        {
+          "python_name": "pretax_amount",
+          "http_field": "pretaxAmount",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "发票金额",
+          "location": "body"
+        },
+        {
+          "python_name": "invoicing_date",
+          "http_field": "invoicingDate",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "开票日期",
+          "location": "body"
+        },
+        {
+          "python_name": "id_card_no",
+          "http_field": "idCardNo",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "身份证后六位",
+          "location": "body"
+        },
+        {
+          "python_name": "province",
+          "http_field": "province",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "省份，如 \"江苏省\"",
+          "location": "body"
+        },
+        {
+          "python_name": "city",
+          "http_field": "city",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "城市，如 \"南京市\"",
+          "location": "body"
+        }
+      ]
+    },
+    {
+      "name": "invoice_check_in_nation",
+      "description": "医疗票据查验（全国版）",
+      "category": "医疗票据识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/ocr/invoiceCheckInNation",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "img_base64",
+          "http_field": "imgBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码",
+          "location": "body"
+        },
+        {
+          "python_name": "img_url",
+          "http_field": "imgUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址"
+        },
+        {
+          "python_name": "invoice_code",
+          "http_field": "invoiceCode",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "发票代码",
+          "location": "body"
+        },
+        {
+          "python_name": "invoice_number",
+          "http_field": "invoiceNumber",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "发票号码",
+          "location": "body"
+        },
+        {
+          "python_name": "check_code",
+          "http_field": "checkCode",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "校验码后6位",
+          "location": "body"
+        },
+        {
+          "python_name": "pretax_amount",
+          "http_field": "pretaxAmount",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "发票金额",
+          "location": "body"
+        },
+        {
+          "python_name": "invoicing_date",
+          "http_field": "invoicingDate",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "开票日期",
+          "location": "body"
+        }
+      ]
+    },
+    {
+      "name": "async_check_send",
+      "description": "异步医疗电子发票查验-提交任务",
+      "category": "医疗票据识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/ocr/sendAsyncCheckAll",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "img_base64",
+          "http_field": "imgBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码",
+          "location": "body"
+        },
+        {
+          "python_name": "img_url",
+          "http_field": "imgUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址"
+        },
+        {
+          "python_name": "invoice_code",
+          "http_field": "invoiceCode",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "发票代码",
+          "location": "body"
+        },
+        {
+          "python_name": "invoice_number",
+          "http_field": "invoiceNumber",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "发票号码",
+          "location": "body"
+        },
+        {
+          "python_name": "check_code",
+          "http_field": "checkCode",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "校验码后6位",
+          "location": "body"
+        },
+        {
+          "python_name": "pretax_amount",
+          "http_field": "pretaxAmount",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "发票金额",
+          "location": "body"
+        },
+        {
+          "python_name": "invoicing_date",
+          "http_field": "invoicingDate",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "开票日期",
+          "location": "body"
+        },
+        {
+          "python_name": "payer",
+          "http_field": "payer",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "交款人信息",
+          "location": "body"
+        },
+        {
+          "python_name": "seller_number",
+          "http_field": "sellerNumber",
+          "type": "integer",
+          "required": false,
+          "default": 0,
+          "description": "销售方识别号",
+          "location": "body"
+        },
+        {
+          "python_name": "need_pdf",
+          "http_field": "needPdf",
+          "type": "integer",
+          "required": false,
+          "default": 1,
+          "description": "是否需要明细",
+          "location": "body"
+        },
+        {
+          "python_name": "id_card_no",
+          "http_field": "idCardNo",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "身份证后六位",
+          "location": "body"
+        }
+      ]
+    },
+    {
+      "name": "async_check_get",
+      "description": "异步医疗电子发票查验-获取结果",
+      "category": "医疗票据识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/ocr/getAsyncCheckAll",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "task_id",
+          "http_field": "taskId",
+          "type": "string",
+          "required": true,
+          "default": "",
+          "description": "异步任务ID，由 async_check_send 返回",
+          "location": "body"
+        }
+      ]
+    },
+    {
+      "name": "financial_bill_check",
+      "description": "医疗票据查验（必填发票信息）",
+      "category": "医疗票据识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/ocr/financialBillCheck",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "invoice_code",
+          "http_field": "invoiceCode",
+          "type": "string",
+          "required": true,
+          "default": "",
+          "description": "发票代码（必填）",
+          "location": "body"
+        },
+        {
+          "python_name": "invoice_number",
+          "http_field": "invoiceNumber",
+          "type": "string",
+          "required": true,
+          "default": "",
+          "description": "发票号码（必填）",
+          "location": "body"
+        },
+        {
+          "python_name": "pretax_amount",
+          "http_field": "pretaxAmount",
+          "type": "string",
+          "required": true,
+          "default": "",
+          "description": "发票金额（必填）",
+          "location": "body"
+        },
+        {
+          "python_name": "invoicing_date",
+          "http_field": "invoicingDate",
+          "type": "string",
+          "required": true,
+          "default": "",
+          "description": "开票日期（必填），如 20240118",
+          "location": "body"
+        },
+        {
+          "python_name": "check_code",
+          "http_field": "checkCode",
+          "type": "string",
+          "required": true,
+          "default": "",
+          "description": "校验码后6位（必填）",
+          "location": "body"
+        },
+        {
+          "python_name": "payer",
+          "http_field": "payer",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "交款人信息，一年以上票据必传",
+          "location": "body"
+        },
+        {
+          "python_name": "id_card_no",
+          "http_field": "idCardNo",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "身份证后六位",
+          "location": "body"
+        },
+        {
+          "python_name": "need_pdf",
+          "http_field": "needPdf",
+          "type": "integer",
+          "required": false,
+          "default": 1,
+          "description": "是否需要明细（0不需要 1需要）",
+          "location": "body"
+        }
+      ]
+    }
+  ]
+}

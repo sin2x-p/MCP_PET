@@ -1,0 +1,71 @@
+{
+  "metadata": {
+    "name": "pet_limb",
+    "version": "1.0.0",
+    "description": "宠物猫狗肢体关键点检测"
+  },
+  "server": {
+    "api_base": "https://ai.inspirvision.cn/s",
+    "timeout": 30
+  },
+  "tools": [
+    {
+      "name": "cat_limb_checking",
+      "description": "猫四肢关键点检测",
+      "category": "宠物识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/catLimbChecking",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "img_base64",
+          "http_field": "imgBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码(含data:image/png;base64,)，和图片地址必须传一个",
+          "location": "body"
+        },
+        {
+          "python_name": "image_url",
+          "http_field": "imageUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址，和图片base64编码必须传一个"
+        }
+      ]
+    },
+    {
+      "name": "dog_limb_checking",
+      "description": "狗四肢关键点检测",
+      "category": "宠物识别",
+      "http": {
+        "method": "POST",
+        "path": "/api/dogLimbChecking",
+        "content_type": "form-data"
+      },
+      "parameters": [
+        {
+          "python_name": "img_base64",
+          "http_field": "imgBase64",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片base64编码(含data:image/png;base64,)，和图片地址必须传一个",
+          "location": "body"
+        },
+        {
+          "python_name": "image_url",
+          "http_field": "imageUrl",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "图片URL地址，和图片base64编码必须传一个"
+        }
+      ]
+    }
+  ]
+}
