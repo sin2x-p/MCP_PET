@@ -2,187 +2,239 @@ services:
   nginx:
     image: nginx
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
+    - ./nginx.conf:/etc/nginx/nginx.conf
     ports:
-      - "8000:80"
+    - 8000:80
     depends_on:
-      - pet_breed
-      - pet_act
-      - pet_archives
-      - pet_face
-      - pet_detect
-      - pet_limb
-      - pet_leash
-      - bird_detect
-      - bird_global
-      - bird_domestic
-      - bird_north_america
-      - bird_europe
-      - bird_knowledge
-      - bird_animal
-      - insurance
-      - medical_listing
-      - medical_record
-      - medical_classify
-      - medical_inspection
-      - medical_invoice
-      - medical_knowledge
-      - medical_check
-      - general
-      - certificate
-      - invoice_financial
-      - invoice_tax
-      - vehicle
-
-  # 宠物识别
-  pet_breed:
-    image: biz-mcp-gateway
-    environment:
-      - MCP_CONFIG=pet_breed
-      - TOKEN_SOURCE=header
-  pet_act:
-    image: biz-mcp-gateway
-    environment:
-      - MCP_CONFIG=pet_act
-      - TOKEN_SOURCE=header
-  pet_archives:
-    image: biz-mcp-gateway
-    environment:
-      - MCP_CONFIG=pet_archives
-      - TOKEN_SOURCE=header
-  pet_face:
-    image: biz-mcp-gateway
-    environment:
-      - MCP_CONFIG=pet_face
-      - TOKEN_SOURCE=header
-  pet_detect:
-    image: biz-mcp-gateway
-    environment:
-      - MCP_CONFIG=pet_detect
-      - TOKEN_SOURCE=header
-  pet_limb:
-    image: biz-mcp-gateway
-    environment:
-      - MCP_CONFIG=pet_limb
-      - TOKEN_SOURCE=header
-  pet_leash:
-    image: biz-mcp-gateway
-    environment:
-      - MCP_CONFIG=pet_leash
-      - TOKEN_SOURCE=header
-
-  # 鸟类识别
-  bird_detect:
-    image: biz-mcp-gateway
-    environment:
-      - MCP_CONFIG=bird_detect
-      - TOKEN_SOURCE=header
-  bird_global:
-    image: biz-mcp-gateway
-    environment:
-      - MCP_CONFIG=bird_global
-      - TOKEN_SOURCE=header
-  bird_domestic:
-    image: biz-mcp-gateway
-    environment:
-      - MCP_CONFIG=bird_domestic
-      - TOKEN_SOURCE=header
-  bird_north_america:
-    image: biz-mcp-gateway
-    environment:
-      - MCP_CONFIG=bird_north_america
-      - TOKEN_SOURCE=header
-  bird_europe:
-    image: biz-mcp-gateway
-    environment:
-      - MCP_CONFIG=bird_europe
-      - TOKEN_SOURCE=header
-  bird_knowledge:
-    image: biz-mcp-gateway
-    environment:
-      - MCP_CONFIG=bird_knowledge
-      - TOKEN_SOURCE=header
+    - bird_animal
+    - bird_detect
+    - bird_domestic
+    - bird_europe
+    - bird_global
+    - bird_knowledge
+    - bird_north_america
+    - certificate
+    - general
+    - insurance
+    - invoice_financial
+    - invoice_tax
+    - medical_check
+    - medical_classify
+    - medical_inspection
+    - medical_invoice
+    - medical_knowledge
+    - medical_listing
+    - medical_record
+    - pet_act
+    - pet_archives
+    - pet_breed
+    - pet_detect
+    - pet_face
+    - pet_leash
+    - pet_limb
+    - test
+    - test2
+    - vehicle
   bird_animal:
     image: biz-mcp-gateway
     environment:
-      - MCP_CONFIG=bird_animal
-      - TOKEN_SOURCE=header
-
-  # 保险识别
-  insurance:
+    - MCP_CONFIG=bird_animal
+    - TOKEN_SOURCE=header
+    volumes:
+    - E:\code\mcp\configs:/app/configs:ro
+  bird_detect:
     image: biz-mcp-gateway
     environment:
-      - MCP_CONFIG=insurance
-      - TOKEN_SOURCE=header
-
-  # 医疗识别
-  medical_listing:
+    - MCP_CONFIG=bird_detect
+    - TOKEN_SOURCE=header
+    volumes:
+    - E:\code\mcp\configs:/app/configs:ro
+  bird_domestic:
     image: biz-mcp-gateway
     environment:
-      - MCP_CONFIG=medical_listing
-      - TOKEN_SOURCE=header
-  medical_record:
+    - MCP_CONFIG=bird_domestic
+    - TOKEN_SOURCE=header
+    volumes:
+    - E:\code\mcp\configs:/app/configs:ro
+  bird_europe:
     image: biz-mcp-gateway
     environment:
-      - MCP_CONFIG=medical_record
-      - TOKEN_SOURCE=header
-  medical_classify:
+    - MCP_CONFIG=bird_europe
+    - TOKEN_SOURCE=header
+    volumes:
+    - E:\code\mcp\configs:/app/configs:ro
+  bird_global:
     image: biz-mcp-gateway
     environment:
-      - MCP_CONFIG=medical_classify
-      - TOKEN_SOURCE=header
-  medical_inspection:
+    - MCP_CONFIG=bird_global
+    - TOKEN_SOURCE=header
+    volumes:
+    - E:\code\mcp\configs:/app/configs:ro
+  bird_knowledge:
     image: biz-mcp-gateway
     environment:
-      - MCP_CONFIG=medical_inspection
-      - TOKEN_SOURCE=header
-  medical_invoice:
+    - MCP_CONFIG=bird_knowledge
+    - TOKEN_SOURCE=header
+    volumes:
+    - E:\code\mcp\configs:/app/configs:ro
+  bird_north_america:
     image: biz-mcp-gateway
     environment:
-      - MCP_CONFIG=medical_invoice
-      - TOKEN_SOURCE=header
-  medical_knowledge:
-    image: biz-mcp-gateway
-    environment:
-      - MCP_CONFIG=medical_knowledge
-      - TOKEN_SOURCE=header
-  medical_check:
-    image: biz-mcp-gateway
-    environment:
-      - MCP_CONFIG=medical_check
-      - TOKEN_SOURCE=header
-
-  # 通用能力
-  general:
-    image: biz-mcp-gateway
-    environment:
-      - MCP_CONFIG=general
-      - TOKEN_SOURCE=header
-
-  # 证件识别
+    - MCP_CONFIG=bird_north_america
+    - TOKEN_SOURCE=header
+    volumes:
+    - E:\code\mcp\configs:/app/configs:ro
   certificate:
     image: biz-mcp-gateway
     environment:
-      - MCP_CONFIG=certificate
-      - TOKEN_SOURCE=header
-
-  # 财务发票
+    - MCP_CONFIG=certificate
+    - TOKEN_SOURCE=header
+    volumes:
+    - E:\code\mcp\configs:/app/configs:ro
+  general:
+    image: biz-mcp-gateway
+    environment:
+    - MCP_CONFIG=general
+    - TOKEN_SOURCE=header
+    volumes:
+    - E:\code\mcp\configs:/app/configs:ro
+  insurance:
+    image: biz-mcp-gateway
+    environment:
+    - MCP_CONFIG=insurance
+    - TOKEN_SOURCE=header
+    volumes:
+    - E:\code\mcp\configs:/app/configs:ro
   invoice_financial:
     image: biz-mcp-gateway
     environment:
-      - MCP_CONFIG=invoice_financial
-      - TOKEN_SOURCE=header
-
-  # 税务发票
+    - MCP_CONFIG=invoice_financial
+    - TOKEN_SOURCE=header
+    volumes:
+    - E:\code\mcp\configs:/app/configs:ro
   invoice_tax:
     image: biz-mcp-gateway
     environment:
-      - MCP_CONFIG=invoice_tax
-      - TOKEN_SOURCE=header
-
-  # 车辆识别
+    - MCP_CONFIG=invoice_tax
+    - TOKEN_SOURCE=header
+    volumes:
+    - E:\code\mcp\configs:/app/configs:ro
+  medical_check:
+    image: biz-mcp-gateway
+    environment:
+    - MCP_CONFIG=medical_check
+    - TOKEN_SOURCE=header
+    volumes:
+    - E:\code\mcp\configs:/app/configs:ro
+  medical_classify:
+    image: biz-mcp-gateway
+    environment:
+    - MCP_CONFIG=medical_classify
+    - TOKEN_SOURCE=header
+    volumes:
+    - E:\code\mcp\configs:/app/configs:ro
+  medical_inspection:
+    image: biz-mcp-gateway
+    environment:
+    - MCP_CONFIG=medical_inspection
+    - TOKEN_SOURCE=header
+    volumes:
+    - E:\code\mcp\configs:/app/configs:ro
+  medical_invoice:
+    image: biz-mcp-gateway
+    environment:
+    - MCP_CONFIG=medical_invoice
+    - TOKEN_SOURCE=header
+    volumes:
+    - E:\code\mcp\configs:/app/configs:ro
+  medical_knowledge:
+    image: biz-mcp-gateway
+    environment:
+    - MCP_CONFIG=medical_knowledge
+    - TOKEN_SOURCE=header
+    volumes:
+    - E:\code\mcp\configs:/app/configs:ro
+  medical_listing:
+    image: biz-mcp-gateway
+    environment:
+    - MCP_CONFIG=medical_listing
+    - TOKEN_SOURCE=header
+    volumes:
+    - E:\code\mcp\configs:/app/configs:ro
+  medical_record:
+    image: biz-mcp-gateway
+    environment:
+    - MCP_CONFIG=medical_record
+    - TOKEN_SOURCE=header
+    volumes:
+    - E:\code\mcp\configs:/app/configs:ro
+  pet_act:
+    image: biz-mcp-gateway
+    environment:
+    - MCP_CONFIG=pet_act
+    - TOKEN_SOURCE=header
+    volumes:
+    - E:\code\mcp\configs:/app/configs:ro
+  pet_archives:
+    image: biz-mcp-gateway
+    environment:
+    - MCP_CONFIG=pet_archives
+    - TOKEN_SOURCE=header
+    volumes:
+    - E:\code\mcp\configs:/app/configs:ro
+  pet_breed:
+    image: biz-mcp-gateway
+    environment:
+    - MCP_CONFIG=pet_breed
+    - TOKEN_SOURCE=header
+    volumes:
+    - E:\code\mcp\configs:/app/configs:ro
+  pet_detect:
+    image: biz-mcp-gateway
+    environment:
+    - MCP_CONFIG=pet_detect
+    - TOKEN_SOURCE=header
+    volumes:
+    - E:\code\mcp\configs:/app/configs:ro
+  pet_face:
+    image: biz-mcp-gateway
+    environment:
+    - MCP_CONFIG=pet_face
+    - TOKEN_SOURCE=header
+    volumes:
+    - E:\code\mcp\configs:/app/configs:ro
+  pet_leash:
+    image: biz-mcp-gateway
+    environment:
+    - MCP_CONFIG=pet_leash
+    - TOKEN_SOURCE=header
+    volumes:
+    - E:\code\mcp\configs:/app/configs:ro
+  pet_limb:
+    image: biz-mcp-gateway
+    environment:
+    - MCP_CONFIG=pet_limb
+    - TOKEN_SOURCE=header
+    volumes:
+    - E:\code\mcp\configs:/app/configs:ro
+  test:
+    image: biz-mcp-gateway
+    environment:
+    - MCP_CONFIG=test
+    - TOKEN_SOURCE=header
+    volumes:
+    - E:\code\mcp\configs:/app/configs:ro
+  test2:
+    image: biz-mcp-gateway
+    environment:
+    - MCP_CONFIG=test2
+    - TOKEN_SOURCE=header
+    volumes:
+    - E:\code\mcp\configs:/app/configs:ro
   vehicle:
     image: biz-mcp-gateway
     environment:
-      - MCP_CONFIG=vehicle
-      - TOKEN_SOURCE=header
+    - MCP_CONFIG=vehicle
+    - TOKEN_SOURCE=header
+    volumes:
+    - E:\code\mcp\configs:/app/configs:ro

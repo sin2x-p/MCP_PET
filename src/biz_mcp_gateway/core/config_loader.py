@@ -15,7 +15,7 @@ class ConfigLoader:
         if not config_path.exists():
             raise FileNotFoundError(f"配置文件不存在: {config_path}")
         
-        with open(config_path, "r", encoding="utf-8") as f:
+        with open(config_path, "r", encoding="utf-8-sig") as f:
             config = json.load(f)
         
         # 处理环境变量

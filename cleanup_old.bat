@@ -1,0 +1,5 @@
+@echo off
+docker stop mcp-bird_detect-1 mcp-bird_domestic-1 mcp-test-1 mcp-bird_animal-1 mcp-bird_europe-1 mcp-bird_knowledge-1 mcp-bird_north_america-1 mcp-bird_global-1 mcp-certificate-1 mcp-insurance-1 mcp-general-1 mcp-invoice_financial-1 mcp-invoice_tax-1 mcp-medical_check-1 mcp-medical_classify-1 mcp-medical_inspection-1 mcp-medical_invoice-1 mcp-medical_knowledge-1 mcp-medical_listing-1 mcp-medical_record-1 mcp-pet_act-1 mcp-pet_archives-1 mcp-pet_breed-1 mcp-pet_detect-1 mcp-pet_face-1 mcp-pet_limb-1 mcp-pet_leash-1 mcp-vehicle-1
+docker rm mcp-bird_detect-1 mcp-bird_domestic-1 mcp-test-1 mcp-bird_animal-1 mcp-bird_europe-1 mcp-bird_knowledge-1 mcp-bird_north_america-1 mcp-bird_global-1 mcp-certificate-1 mcp-insurance-1 mcp-general-1 mcp-invoice_financial-1 mcp-invoice_tax-1 mcp-medical_check-1 mcp-medical_classify-1 mcp-medical_inspection-1 mcp-medical_invoice-1 mcp-medical_knowledge-1 mcp-medical_listing-1 mcp-medical_record-1 mcp-pet_act-1 mcp-pet_archives-1 mcp-pet_breed-1 mcp-pet_detect-1 mcp-pet_face-1 mcp-pet_limb-1 mcp-pet_leash-1 mcp-vehicle-1
+echo Done
+pause

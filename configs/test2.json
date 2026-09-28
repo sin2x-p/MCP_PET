@@ -1,0 +1,12 @@
+﻿{
+  "metadata": {
+    "name": "test2",
+    "version": "1.0.0",
+    "description": "大王"
+  },
+  "server": {
+    "api_base": "https://ai.inspirvision.cn/s",
+    "timeout": 30
+  },
+  "tools": []
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "type": "object",
+  "title": "医疗费用清单识别",
+  "description": "请输入你在医疗MCP平台获取的访问Token",
+  "properties": {
+    "MEDICAL_TOKEN": {
+      "type": "string",
+      "title": "Authorization Token",
+      "description": "个人访问凭证，在你的后台生成，用于调用医疗MCP工具",
+      "format": "password"
+    }
+  },
+  "required": ["MEDICAL_TOKEN"]
+}
